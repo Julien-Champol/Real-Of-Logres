@@ -1,0 +1,5 @@
+Question 1)	Il y a une façon de gagner, l'activation du GRAAL.
+		Il y a une façon de perdre, une dette insurmontable.
+		La victoire et la défaite sont déclenchées dans la classe WorldState.cs, lignes 85 à 93.
+
+Question 2)	

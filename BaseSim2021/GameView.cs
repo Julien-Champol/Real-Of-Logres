@@ -28,7 +28,7 @@ namespace BaseSim2021
         public void WriteLine(string s)
         {
             List<string> strs = s.Split('\n').ToList();
-            strs.ForEach(str=>outputListBox.Items.Add(str));
+            strs.ForEach(str => outputListBox.Items.Add(str));
             if (outputListBox.Items.Count > 0)
             {
                 outputListBox.SelectedIndex = outputListBox.Items.Count - 1;
@@ -69,7 +69,7 @@ namespace BaseSim2021
 
         private void NextButton_Click(object sender, EventArgs e)
         {
-
+            //GameController.Interpret("suivant")
         }
     }
 }
