@@ -1,0 +1,11 @@
+D:\DUT\Informatique\IHM\realmOfLogres\BaseSim2021\bin\Debug\BaseSim2021.exe.config
+D:\DUT\Informatique\IHM\realmOfLogres\BaseSim2021\bin\Debug\BaseSim2021.exe
+D:\DUT\Informatique\IHM\realmOfLogres\BaseSim2021\bin\Debug\BaseSim2021.pdb
+D:\DUT\Informatique\IHM\realmOfLogres\BaseSim2021\obj\Debug\ChampolLogres.csprojAssemblyReference.cache
+D:\DUT\Informatique\IHM\realmOfLogres\BaseSim2021\obj\Debug\BaseSim2021.DifficultyView.resources
+D:\DUT\Informatique\IHM\realmOfLogres\BaseSim2021\obj\Debug\BaseSim2021.GameView.resources
+D:\DUT\Informatique\IHM\realmOfLogres\BaseSim2021\obj\Debug\BaseSim2021.Properties.Resources.resources
+D:\DUT\Informatique\IHM\realmOfLogres\BaseSim2021\obj\Debug\ChampolLogres.csproj.GenerateResource.cache
+D:\DUT\Informatique\IHM\realmOfLogres\BaseSim2021\obj\Debug\ChampolLogres.csproj.CoreCompileInputs.cache
+D:\DUT\Informatique\IHM\realmOfLogres\BaseSim2021\obj\Debug\BaseSim2021.exe
+D:\DUT\Informatique\IHM\realmOfLogres\BaseSim2021\obj\Debug\BaseSim2021.pdb
