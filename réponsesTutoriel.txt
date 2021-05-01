@@ -4,3 +4,14 @@ Question 1)	Il y a une façon de gagner, l'activation du GRAAL.
 
 Question 2)	La propriété DefaultCommand de la classe GameController.cs est la commande par défaut exécutée au lancement du programme.
 		Ici, c'est aide.
+
+Question 3) La difficulté est choisie grâce à trois bouttons dans le menu de lancement. 
+			Le choix difficile ne fonctionne pas car la méthode 
+			private void HardButton_Click(object sender, EventArgs e) => Difficulty = WorldState.Difficulty.Hard;
+			doit s'écrire sans maj de la manière suivante :
+			private void hardButton_Click_1(object sender, EventArgs e) => Difficulty = WorldState.Difficulty.Hard;
+
+Question 4)
+			La boite de dialogue se ferme lorsque la réponse de l'utilisateur a été rprise en compte, ce qui implique 
+			l'activité de la propriété DialogResult. Ici, elle est set à none pour le bouton difficile.
+			On la passe à OK comme pour les autres bouttons.
