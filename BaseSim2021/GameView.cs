@@ -57,19 +57,17 @@ namespace BaseSim2021
 
         private void GameView_Paint(object sender, PaintEventArgs e)
         {
-            /*
-            diffLabel.Text = "Difficulté : " + "?";
-            turnLabel.Text = "Tour " + "?";
-            moneyLabel.Text = "Trésor : " + "?" + " pièces d'or";
-            gloryLabel.Text = "Gloire : " + "?";
-            */
-            nextButton.Visible = false;
+            diffLabel.Text = "Difficulté : " + theWorld.TheDifficulty;
+            turnLabel.Text = "Tour " + (theWorld.Turns + 1); //ou turns + 1 ?
+            moneyLabel.Text = "Trésor : " + theWorld.Money + " pièces d'or";
+            gloryLabel.Text = "Gloire : " + theWorld.Glory;
+            nextButton.Visible = true;
         }
         #endregion
 
         private void NextButton_Click(object sender, EventArgs e)
         {
-            //GameController.Interpret("suivant")
+            GameController.Interpret("suivant");
         }
     }
 }
