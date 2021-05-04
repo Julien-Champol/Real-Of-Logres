@@ -265,7 +265,7 @@ namespace BaseSim2021
                 MessageBox.Show("Partie perdue :
                 + indexedValue.CompletePresentation());
             }
-            GameView.nextButton.Enabled = false;
+            nextButton.Enabled = false;
         }
         /// <summary>
         /// Method called whenever the game is won
