@@ -69,5 +69,26 @@ namespace BaseSim2021
         {
             GameController.Interpret("suivant");
         }
+
+        public void LoseDialog(IndexedValue indexedValue)
+        {
+            if (indexedValue == null)
+            {
+                MessageBox.Show("Partie perdue : dette insurmontable.");
+            }
+            else
+            {
+                MessageBox.Show("Partie perdue : "
+                + indexedValue.CompletePresentation());
+            }
+            nextButton.Enabled = false;
+        }
+
+        public void WinDialog()
+        {
+            MessageBox.Show("Partie gagnée.");
+            nextButton.Enabled = false;
+        }
+
     }
 }

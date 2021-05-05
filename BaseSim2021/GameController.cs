@@ -137,9 +137,9 @@ namespace BaseSim2021
                 string s = "Etat actuel : Tour " + (theWorld.Turns + 1) + " ";
                 if (theWorld.TurnsLeft >= 0)
                 {
-                    s+="(" + theWorld.TurnsLeft + " restant) ";
+                    s += "(" + theWorld.TurnsLeft + " restant) ";
                 }
-                theView.WriteLine(s+"Finances : " + theWorld.Money + " pièces d'or, gloire : " + theWorld.Glory);
+                theView.WriteLine(s + "Finances : " + theWorld.Money + " pièces d'or, gloire : " + theWorld.Glory);
             }
             theView.Refresh();
         }
@@ -246,33 +246,20 @@ namespace BaseSim2021
         /// Method called whenever the game is lost
         /// </summary>
         /// <param name="indexedValue">The value responsible or null for debt</param>
-        
-        /*public static void LoseDialog(IndexedValue indexedValue)
-        {
-            theView.WriteLine("Partie perdue." +
-                (indexedValue==null ? " Dette insurmontable." : indexedValue.CompletePresentation()));
-            theView.Refresh();
-        }*/
 
         public static void LoseDialog(IndexedValue indexedValue)
         {
-            if (indexedValue == null)
-            {
-                MessageBox.Show("Partie perdue : dette insurmontable.");
-            }
-            else
-            {
-                MessageBox.Show("Partie perdue :
-                + indexedValue.CompletePresentation());
-            }
-            nextButton.Enabled = false;
+            theView.LoseDialog(indexedValue);
+            theView.Refresh();
         }
+
+
         /// <summary>
         /// Method called whenever the game is won
         /// </summary>
         public static void WinDialog()
         {
-            theView.WriteLine("Partie gagnée.");
+            theView.WinDialog();
             theView.Refresh();
         }
         /// <summary>
@@ -294,7 +281,7 @@ namespace BaseSim2021
                 return;
             }
             IndexedValue val = theWorld.FindPolicyOrDefault(pol);
-            if (val==null)
+            if (val == null)
             {
                 theView.WriteLine("erreur nom application politique : " + arg);
                 return;
