@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IndexedValueView.cs" />
     <Compile Include="DifficultyView.cs">
       <SubType>Form</SubType>
     </Compile>

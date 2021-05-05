@@ -69,7 +69,10 @@ namespace BaseSim2021
         {
             GameController.Interpret("suivant");
         }
-
+           
+        /**
+         * Method called from the GameController class used to display a MessageBox in a Losing situation.
+         */
         public void LoseDialog(IndexedValue indexedValue)
         {
             if (indexedValue == null)
@@ -84,11 +87,18 @@ namespace BaseSim2021
             nextButton.Enabled = false;
         }
 
+        /**
+         * Method called from the GameController class used to display a MessageBox in a wining situation.
+         */
         public void WinDialog()
         {
             MessageBox.Show("Partie gagnée.");
             nextButton.Enabled = false;
         }
 
+        private void gloryLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

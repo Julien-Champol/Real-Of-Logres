@@ -41,7 +41,7 @@ namespace BaseSim2021
             // inputTextBox
             // 
             this.inputTextBox.Location = new System.Drawing.Point(106, 303);
-            this.inputTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.inputTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.inputTextBox.Name = "inputTextBox";
             this.inputTextBox.Size = new System.Drawing.Size(459, 20);
             this.inputTextBox.TabIndex = 0;
@@ -52,7 +52,7 @@ namespace BaseSim2021
             this.outputListBox.FormattingEnabled = true;
             this.outputListBox.HorizontalScrollbar = true;
             this.outputListBox.Location = new System.Drawing.Point(6, 6);
-            this.outputListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.outputListBox.Margin = new System.Windows.Forms.Padding(2);
             this.outputListBox.Name = "outputListBox";
             this.outputListBox.Size = new System.Drawing.Size(1005, 277);
             this.outputListBox.TabIndex = 1;
@@ -100,11 +100,12 @@ namespace BaseSim2021
             this.gloryLabel.Size = new System.Drawing.Size(16, 13);
             this.gloryLabel.TabIndex = 5;
             this.gloryLabel.Text = "   ";
+            this.gloryLabel.Click += new System.EventHandler(this.gloryLabel_Click);
             // 
             // nextButton
             // 
             this.nextButton.Location = new System.Drawing.Point(874, 360);
-            this.nextButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nextButton.Margin = new System.Windows.Forms.Padding(2);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(80, 21);
             this.nextButton.TabIndex = 6;
@@ -126,7 +127,7 @@ namespace BaseSim2021
             this.Controls.Add(this.outputListBox);
             this.Controls.Add(this.inputTextBox);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GameView";
             this.Text = "Fenêtre Principale";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameView_Paint);
