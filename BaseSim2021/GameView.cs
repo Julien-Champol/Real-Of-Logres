@@ -100,5 +100,10 @@ namespace BaseSim2021
         {
 
         }
+
+        private void inputTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

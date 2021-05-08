@@ -43,8 +43,9 @@ namespace BaseSim2021
             this.inputTextBox.Location = new System.Drawing.Point(106, 303);
             this.inputTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.inputTextBox.Name = "inputTextBox";
-            this.inputTextBox.Size = new System.Drawing.Size(459, 20);
+            this.inputTextBox.Size = new System.Drawing.Size(94, 20);
             this.inputTextBox.TabIndex = 0;
+            this.inputTextBox.TextChanged += new System.EventHandler(this.inputTextBox_TextChanged);
             this.inputTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InputTextBox_KeyDown);
             // 
             // outputListBox
@@ -54,7 +55,7 @@ namespace BaseSim2021
             this.outputListBox.Location = new System.Drawing.Point(6, 6);
             this.outputListBox.Margin = new System.Windows.Forms.Padding(2);
             this.outputListBox.Name = "outputListBox";
-            this.outputListBox.Size = new System.Drawing.Size(1005, 277);
+            this.outputListBox.Size = new System.Drawing.Size(836, 251);
             this.outputListBox.TabIndex = 1;
             // 
             // diffLabel
@@ -118,7 +119,7 @@ namespace BaseSim2021
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(962, 431);
+            this.ClientSize = new System.Drawing.Size(1011, 462);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.gloryLabel);
             this.Controls.Add(this.moneyLabel);
