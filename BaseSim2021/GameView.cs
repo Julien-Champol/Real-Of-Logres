@@ -13,6 +13,7 @@ namespace BaseSim2021
     public partial class GameView : Form
     {
         private readonly WorldState theWorld;
+        List<IndexedValueView> polViews;
 
         /// <summary>
         /// The constructor for the main window
@@ -122,7 +123,7 @@ namespace BaseSim2021
             Rectangle PolRectangle = new Rectangle(10, 10, 80, 80);
             int margin = 10;
             int x = PolRectangle.X + margin, y = PolRectangle.Y + margin;
-            List<IndexedValueView> polViews = new List<IndexedValueView>();
+            polViews = new List<IndexedValueView>();
             foreach (IndexedValue p in theWorld.Policies)
             {
                 polViews.Add(new IndexedValueView(p, new Point(x, y)));
@@ -136,7 +137,14 @@ namespace BaseSim2021
             }
         }
 
-        #endregion
+        public void IndexedScreenDisplay(PaintEventArgs e)
+        {
+            foreach (IndexedValueView q in polViews)
+            {
+                q.IndexedValueView_Draw(e);
+            }
+        }
 
+        #endregion
     }
 }

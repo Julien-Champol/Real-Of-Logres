@@ -41,14 +41,12 @@ namespace BaseSim2021
         }
         public void IndexedValueView_Draw(PaintEventArgs e)
         {
-            /*
             Pen rectanglePen = new Pen(this.color, 3);
             int absciss = this.x;
             int ordinate = this.y;
             int width = this.widthRectangle;
             int height = this.heightRectangle;
             e.Graphics.DrawRectangle(rectanglePen, absciss, ordinate, width, height);
-            */
         }
 
     }

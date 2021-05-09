@@ -229,9 +229,10 @@ namespace BaseSim2021
         /// <summary>
         /// Trying to display one of the items.
         /// </summary>
-        public static void ShowRectangle()
+        public static void ShowRectangle(PaintEventArgs e)
         {
             theView.ListInitialization();
+            theView.IndexedScreenDisplay(e);
         }
 
         /// <summary>
