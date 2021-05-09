@@ -66,6 +66,8 @@ namespace BaseSim2021
             moneyLabel.Text = "Trésor : " + theWorld.Money + " pièces d'or";
             gloryLabel.Text = "Gloire : " + theWorld.Glory;
             nextButton.Visible = true;
+            ListInitialization();
+            PolViewsDisplay(e);
         }
         #endregion
 
@@ -120,7 +122,7 @@ namespace BaseSim2021
         public void ListInitialization()
         {
             // PolRectangle:0,600,2100,300; w:80, h:80, margin:10
-            Rectangle PolRectangle = new Rectangle(10, 10, 80, 80);
+            Rectangle PolRectangle = new Rectangle(0, 100, 1280, 641);
             int margin = 10, w = 80, h = 80;
             int x = PolRectangle.X + margin, y = PolRectangle.Y + margin;
             polViews = new List<IndexedValueView>();
@@ -133,11 +135,10 @@ namespace BaseSim2021
                     x = PolRectangle.X;
                     y += h + margin;
                 }
-
             }
         }
 
-        public void IndexedScreenDisplay(PaintEventArgs e)
+        public void PolViewsDisplay(PaintEventArgs e)
         {
             foreach (IndexedValueView q in polViews)
             {
@@ -148,6 +149,11 @@ namespace BaseSim2021
         #endregion
 
         private void moneyLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GameView_Load(object sender, EventArgs e)
         {
 
         }

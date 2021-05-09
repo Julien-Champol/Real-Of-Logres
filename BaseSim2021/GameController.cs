@@ -90,8 +90,6 @@ namespace BaseSim2021
                         theWorld.Expenses.FindAll(p => p.Active != false).ForEach(p => theView.WriteLine(p.ToString()));
                         theView.WriteLine("-Politiques disponibles (sauf taxes et quetes)- : ");
                         theWorld.Expenses.FindAll(p => p.Active == false && p.AvailableAt <= theWorld.Turns).ForEach(p => theView.WriteLine(p.ToString()));
-                        theView.ListInitialization();
-                        theView.IndexedScreenDisplay(PaintEventArgs e);
                         break;
                     case "taxes":
                         theView.WriteLine("-Taxes actives- : ");

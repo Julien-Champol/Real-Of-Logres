@@ -30,12 +30,12 @@ namespace BaseSim2021
         private void InitializeComponent()
         {
             this.inputTextBox = new System.Windows.Forms.TextBox();
-            this.outputListBox = new System.Windows.Forms.ListBox();
             this.diffLabel = new System.Windows.Forms.Label();
             this.turnLabel = new System.Windows.Forms.Label();
             this.moneyLabel = new System.Windows.Forms.Label();
             this.gloryLabel = new System.Windows.Forms.Label();
             this.nextButton = new System.Windows.Forms.Button();
+            this.outputListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // inputTextBox
@@ -47,16 +47,6 @@ namespace BaseSim2021
             this.inputTextBox.TabIndex = 0;
             this.inputTextBox.TextChanged += new System.EventHandler(this.inputTextBox_TextChanged);
             this.inputTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InputTextBox_KeyDown);
-            // 
-            // outputListBox
-            // 
-            this.outputListBox.FormattingEnabled = true;
-            this.outputListBox.HorizontalScrollbar = true;
-            this.outputListBox.Location = new System.Drawing.Point(6, 6);
-            this.outputListBox.Margin = new System.Windows.Forms.Padding(2);
-            this.outputListBox.Name = "outputListBox";
-            this.outputListBox.Size = new System.Drawing.Size(642, 290);
-            this.outputListBox.TabIndex = 1;
             // 
             // diffLabel
             // 
@@ -115,12 +105,22 @@ namespace BaseSim2021
             this.nextButton.UseVisualStyleBackColor = true;
             this.nextButton.Click += new System.EventHandler(this.NextButton_Click);
             // 
+            // outputListBox
+            // 
+            this.outputListBox.FormattingEnabled = true;
+            this.outputListBox.HorizontalScrollbar = true;
+            this.outputListBox.Location = new System.Drawing.Point(6, 6);
+            this.outputListBox.Margin = new System.Windows.Forms.Padding(2);
+            this.outputListBox.Name = "outputListBox";
+            this.outputListBox.Size = new System.Drawing.Size(642, 290);
+            this.outputListBox.TabIndex = 1;
+            // 
             // GameView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1011, 394);
+            this.ClientSize = new System.Drawing.Size(1264, 602);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.gloryLabel);
             this.Controls.Add(this.moneyLabel);
@@ -132,6 +132,7 @@ namespace BaseSim2021
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GameView";
             this.Text = "Fenêtre Principale";
+            this.Load += new System.EventHandler(this.GameView_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameView_Paint);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -141,12 +142,12 @@ namespace BaseSim2021
         #endregion
 
         private System.Windows.Forms.TextBox inputTextBox;
-        private System.Windows.Forms.ListBox outputListBox;
         private System.Windows.Forms.Label diffLabel;
         private System.Windows.Forms.Label turnLabel;
         private System.Windows.Forms.Label moneyLabel;
         private System.Windows.Forms.Label gloryLabel;
         private System.Windows.Forms.Button nextButton;
+        private System.Windows.Forms.ListBox outputListBox;
     }
 }
 

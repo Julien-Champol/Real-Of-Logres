@@ -41,8 +41,8 @@ namespace BaseSim2021
             this.IndexedValue = index;
             this.x = coordinates.X;
             this.y = coordinates.Y;
-            this.widthRectangle = 110;
-            this.heightRectangle = 60;
+            this.widthRectangle = 80;
+            this.heightRectangle = 80;
             this.color = Color.Red;
         }
 
