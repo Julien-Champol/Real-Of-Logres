@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace BaseSim2021
 {
+    /// <summary>
+    /// Class representing data about the display methods of the IndexedValues.
+    /// </summary>
     class IndexedValueView
     {
 
@@ -19,26 +22,34 @@ namespace BaseSim2021
 
         /* Size of the rectangle. */
         private int widthRectangle;
+        public int WidthRectangle { set => widthRectangle = value; }
+
         private int heightRectangle;
+        public int HeightRectangle { set => heightRectangle = value; }
 
         /*The color of the rectangle */
         private Color color;
+        public Color Color { set => color = value; }
 
-        /*
-        public IndexedValueView(IndexedValue index, Point coordinates, int width, int height, Color color)
+        /// <summary>
+        /// Parametirized constructor of the IndexedValueView class.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="coordinates"></param>
+        public IndexedValueView(IndexedValue index, Point coordinates)
         {
             this.IndexedValue = index;
             this.x = coordinates.X;
             this.y = coordinates.Y;
-            this.widthRectangle = width;
-            this.heightRectangle = height;
-            this.color = color;
-        } */
-
-        public IndexedValueView(IndexedValue index, Point coordinates)
-        {
-
+            this.widthRectangle = 110;
+            this.heightRectangle = 60;
+            this.color = Color.Red;
         }
+
+        /// <summary>
+        /// Draw method of the IndexedValueView class.
+        /// </summary>
+        /// <param name="e"></param>
         public void IndexedValueView_Draw(PaintEventArgs e)
         {
             Pen rectanglePen = new Pen(this.color, 3);

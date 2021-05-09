@@ -121,17 +121,17 @@ namespace BaseSim2021
         {
             // PolRectangle:0,600,2100,300; w:80, h:80, margin:10
             Rectangle PolRectangle = new Rectangle(10, 10, 80, 80);
-            int margin = 10;
+            int margin = 10, w = 80, h = 80;
             int x = PolRectangle.X + margin, y = PolRectangle.Y + margin;
             polViews = new List<IndexedValueView>();
             foreach (IndexedValue p in theWorld.Policies)
             {
                 polViews.Add(new IndexedValueView(p, new Point(x, y)));
-                x += 80 + margin;
+                x += w + margin;
                 if (x > PolRectangle.Right)
                 {
                     x = PolRectangle.X;
-                    y += 80 + margin;
+                    y += h + margin;
                 }
 
             }
@@ -146,5 +146,10 @@ namespace BaseSim2021
         }
 
         #endregion
+
+        private void moneyLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

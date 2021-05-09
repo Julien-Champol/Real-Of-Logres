@@ -90,6 +90,8 @@ namespace BaseSim2021
                         theWorld.Expenses.FindAll(p => p.Active != false).ForEach(p => theView.WriteLine(p.ToString()));
                         theView.WriteLine("-Politiques disponibles (sauf taxes et quetes)- : ");
                         theWorld.Expenses.FindAll(p => p.Active == false && p.AvailableAt <= theWorld.Turns).ForEach(p => theView.WriteLine(p.ToString()));
+                        theView.ListInitialization();
+                        theView.IndexedScreenDisplay(PaintEventArgs e);
                         break;
                     case "taxes":
                         theView.WriteLine("-Taxes actives- : ");
@@ -226,14 +228,6 @@ namespace BaseSim2021
             theView.Refresh();
         }
 
-        /// <summary>
-        /// Trying to display one of the items.
-        /// </summary>
-        public static void ShowRectangle(PaintEventArgs e)
-        {
-            theView.ListInitialization();
-            theView.IndexedScreenDisplay(e);
-        }
 
         /// <summary>
         /// Method called when a value is deactivated
