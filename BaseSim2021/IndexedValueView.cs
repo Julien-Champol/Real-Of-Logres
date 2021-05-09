@@ -24,24 +24,31 @@ namespace BaseSim2021
         /*The color of the rectangle */
         private Color color;
 
-        public IndexedValueView(IndexedValue index, int rectangleAbsciss, int rectangleOrdinate, int width, int height, Color color)
+        /*
+        public IndexedValueView(IndexedValue index, Point coordinates, int width, int height, Color color)
         {
             this.IndexedValue = index;
-            this.x = rectangleAbsciss;
-            this.y = rectangleOrdinate;
+            this.x = coordinates.X;
+            this.y = coordinates.Y;
             this.widthRectangle = width;
             this.heightRectangle = height;
             this.color = color;
-        }
+        } */
 
+        public IndexedValueView(IndexedValue index, Point coordinates)
+        {
+
+        }
         public void IndexedValueView_Draw(PaintEventArgs e)
         {
+            /*
             Pen rectanglePen = new Pen(this.color, 3);
             int absciss = this.x;
             int ordinate = this.y;
             int width = this.widthRectangle;
             int height = this.heightRectangle;
             e.Graphics.DrawRectangle(rectanglePen, absciss, ordinate, width, height);
+            */
         }
 
     }

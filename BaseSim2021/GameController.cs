@@ -225,6 +225,15 @@ namespace BaseSim2021
             theView.WriteLine("Nouvel effet actif : " + indexedValue.ToString());
             theView.Refresh();
         }
+
+        /// <summary>
+        /// Trying to display one of the items.
+        /// </summary>
+        public static void ShowRectangle()
+        {
+            theView.ListInitialization();
+        }
+
         /// <summary>
         /// Method called when a value is deactivated
         /// </summary>

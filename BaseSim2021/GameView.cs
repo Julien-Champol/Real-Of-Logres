@@ -13,6 +13,7 @@ namespace BaseSim2021
     public partial class GameView : Form
     {
         private readonly WorldState theWorld;
+
         /// <summary>
         /// The constructor for the main window
         /// </summary>
@@ -21,6 +22,7 @@ namespace BaseSim2021
             InitializeComponent();
             theWorld = world;
         }
+
         /// <summary>
         /// Method called by the controler whenever some text should be displayed
         /// </summary>
@@ -35,6 +37,7 @@ namespace BaseSim2021
             }
             outputListBox.Refresh();
         }
+
         /// <summary>
         /// Method called by the controler whenever a confirmation should be asked
         /// </summary>
@@ -69,10 +72,11 @@ namespace BaseSim2021
         {
             GameController.Interpret("suivant");
         }
-           
-        /**
-         * Method called from the GameController class used to display a MessageBox in a Losing situation.
-         */
+
+        /// <summary>
+        /// Method called from the GameController class used to display a MessageBox in a Losing situation.
+        /// </summary>
+        /// <param name="indexedValue"></param>
         public void LoseDialog(IndexedValue indexedValue)
         {
             if (indexedValue == null)
@@ -87,9 +91,9 @@ namespace BaseSim2021
             nextButton.Enabled = false;
         }
 
-        /**
-         * Method called from the GameController class used to display a MessageBox in a wining situation.
-         */
+        /// <summary>
+        /// Method called from the GameController class used to display a MessageBox in a wining situation.
+        /// </summary>
         public void WinDialog()
         {
             MessageBox.Show("Partie gagnée.");
@@ -105,5 +109,34 @@ namespace BaseSim2021
         {
 
         }
+
+        #region Initialization of the lists and screen display of the IndexedValueViews
+
+        /// <summary>
+        /// Method called to add all the IndexedValues of a category
+        /// to a list of IndexedValueViews so that we can manage the display with the ther methods.
+        /// </summary>
+        public void ListInitialization()
+        {
+            // PolRectangle:0,600,2100,300; w:80, h:80, margin:10
+            Rectangle PolRectangle = new Rectangle(10, 10, 80, 80);
+            int margin = 10;
+            int x = PolRectangle.X + margin, y = PolRectangle.Y + margin;
+            List<IndexedValueView> polViews = new List<IndexedValueView>();
+            foreach (IndexedValue p in theWorld.Policies)
+            {
+                polViews.Add(new IndexedValueView(p, new Point(x, y)));
+                x += 80 + margin;
+                if (x > PolRectangle.Right)
+                {
+                    x = PolRectangle.X;
+                    y += 80 + margin;
+                }
+
+            }
+        }
+
+        #endregion
+
     }
 }
