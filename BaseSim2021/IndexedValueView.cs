@@ -22,13 +22,15 @@ namespace BaseSim2021
 
         /* Size of the rectangle. */
         private int widthRectangle;
-        public int WidthRectangle { set => widthRectangle = value; }
+        public int WidthRectangle { get { return widthRectangle; } set => widthRectangle = value; }
 
         private int heightRectangle;
-        public int HeightRectangle { set => heightRectangle = value; }
+        public int HeightRectangle { get { return heightRectangle; } set => heightRectangle = value; }
 
         /*The color of the rectangle */
         private Color color;
+
+
         public Color Color { set => color = value; }
 
         /// <summary>
@@ -41,23 +43,25 @@ namespace BaseSim2021
             this.IndexedValue = index;
             this.x = coordinates.X;
             this.y = coordinates.Y;
-            this.widthRectangle = 80;
-            this.heightRectangle = 80;
-            this.color = Color.Red;
+            this.widthRectangle = 70;
+            this.heightRectangle = 70;
+            this.color = Color.CadetBlue;
         }
 
         /// <summary>
         /// Draw method of the IndexedValueView class.
         /// </summary>
         /// <param name="e"></param>
-        public void IndexedValueView_Draw(PaintEventArgs e)
+        public void IndexedValueView_Draw(Graphics g)
         {
             Pen rectanglePen = new Pen(this.color, 3);
             int absciss = this.x;
             int ordinate = this.y;
             int width = this.widthRectangle;
             int height = this.heightRectangle;
-            e.Graphics.DrawRectangle(rectanglePen, absciss, ordinate, width, height);
+            Rectangle displayedRectangle = new Rectangle(absciss, ordinate, width, height);
+            g.DrawRectangle(rectanglePen, displayedRectangle);
+            g.DrawString(IndexedValue.Name, new Font("Times New Roman", 10, FontStyle.Bold), Brushes.Red, displayedRectangle);
         }
 
     }

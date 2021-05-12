@@ -67,7 +67,7 @@ namespace BaseSim2021
             gloryLabel.Text = "Gloire : " + theWorld.Glory;
             nextButton.Visible = true;
             ListInitialization();
-            PolViewsDisplay(e);
+            PolViewsDisplay(e.Graphics);
         }
         #endregion
 
@@ -117,10 +117,11 @@ namespace BaseSim2021
 
         /// <summary>
         /// Method called to add all the IndexedValues of a category
-        /// to a list of IndexedValueViews so that we can manage the display with the ther methods.
+        /// to a list of IndexedValueViews so that we can manage the display with the draw method.
         /// </summary>
         public void ListInitialization()
         {
+            // POLITICS
             // PolRectangle:0,600,2100,300; w:80, h:80, margin:10
             Rectangle PolRectangle = new Rectangle(0, 100, 1280, 641);
             int margin = 10, w = 80, h = 80;
@@ -132,17 +133,21 @@ namespace BaseSim2021
                 x += w + margin;
                 if (x > PolRectangle.Right)
                 {
-                    x = PolRectangle.X;
+                    x = PolRectangle.X + margin;
                     y += h + margin;
                 }
             }
         }
 
-        public void PolViewsDisplay(PaintEventArgs e)
+        /// <summary>
+        /// Method used to display all the Politicial indexed values on screen.
+        /// </summary>
+        /// <param name="g"></param>
+        public void PolViewsDisplay(Graphics g)
         {
             foreach (IndexedValueView q in polViews)
             {
-                q.IndexedValueView_Draw(e);
+                q.IndexedValueView_Draw(g);
             }
         }
 
@@ -157,5 +162,6 @@ namespace BaseSim2021
         {
 
         }
+
     }
 }
