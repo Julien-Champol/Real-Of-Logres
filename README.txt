@@ -6,4 +6,7 @@ Réussi.
 
 18/05/2021
 
-Suite de la création de la maquette.
+Suite de la création de la maquette. Début de l'exo 11.
+Réponse à l'événement mouseDown, Utilisation du code de DessinObjets.
+Problème : utilisation simultanée des listes de IndexedValueViews dans la méthode sélection.
+Une méthode paar liste -> pas opti.

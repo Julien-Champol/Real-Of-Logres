@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BaseSim2021
@@ -58,6 +54,29 @@ namespace BaseSim2021
                 e.SuppressKeyPress = true; // Or beep.
                 GameController.Interpret(inputTextBox.Text);
             }
+        }
+
+        /// <summary>
+        /// The method handling the MouseDown event of the main window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GameView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if ()
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        private IndexedValueView Sélection(Point p)
+        {
+            return polViews.FirstOrDefault(c => c.Contient(p));
         }
 
         private void GameView_Paint(object sender, PaintEventArgs e)
@@ -175,20 +194,5 @@ namespace BaseSim2021
         }
 
         #endregion
-
-        private void moneyLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GameView_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GameView_MouseDown(object sender, MouseEventArgs e)
-        {
-
-        }
     }
 }
