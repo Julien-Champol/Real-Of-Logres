@@ -186,5 +186,9 @@ namespace BaseSim2021
 
         }
 
+        private void GameView_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

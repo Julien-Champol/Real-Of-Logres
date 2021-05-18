@@ -132,6 +132,7 @@ namespace BaseSim2021
             this.Text = "Fenêtre Principale";
             this.Load += new System.EventHandler(this.GameView_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameView_Paint);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GameView_MouseDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

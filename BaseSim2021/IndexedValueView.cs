@@ -66,5 +66,16 @@ namespace BaseSim2021
             g.DrawString(IndexedValue.Value.ToString(), new Font("Times New Roman", 10, FontStyle.Bold), Brushes.Red, valueRectangle);
         }
 
+        /// <summary>
+        /// Method telling if a rectangle contains a certain point.
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns> true iff the point is contained, false iff the point is not within the rectangle </returns>
+        public bool Contient(Point p)
+        {
+            Rectangle r = new Rectangle(this.x, this.y, this.widthRectangle, this.heightRectangle);
+            return r.Contains(p);
+        }
+
     }
 }
