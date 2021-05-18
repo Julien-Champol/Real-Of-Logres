@@ -14,6 +14,7 @@ namespace BaseSim2021
     {
         private readonly WorldState theWorld;
         List<IndexedValueView> polViews;
+        List<IndexedValueView> groupsViews;
 
         /// <summary>
         /// The constructor for the main window
@@ -67,7 +68,7 @@ namespace BaseSim2021
             gloryLabel.Text = "Gloire : " + theWorld.Glory;
             nextButton.Visible = true;
             ListInitialization();
-            PolViewsDisplay(e.Graphics);
+            ViewsDisplay(e.Graphics);
         }
         #endregion
 
@@ -117,13 +118,13 @@ namespace BaseSim2021
 
         /// <summary>
         /// Method called to add all the IndexedValues of a category
-        /// to a list of IndexedValueViews so that we can manage the display with the draw method.
+        /// to a list of IndexedValueViews so that the coordinates giving is managed here.
         /// </summary>
         public void ListInitialization()
         {
             // POLITICS
-            // PolRectangle:0,600,2100,300; w:80, h:80, margin:10
-            Rectangle PolRectangle = new Rectangle(0, 100, 1280, 641);
+            // PolRectangle:0,20, 800, 641; w:80, h:80, margin:10
+            Rectangle PolRectangle = new Rectangle(0, 20, 800, 641);
             int margin = 10, w = 80, h = 80;
             int x = PolRectangle.X + margin, y = PolRectangle.Y + margin;
             polViews = new List<IndexedValueView>();
@@ -137,15 +138,37 @@ namespace BaseSim2021
                     y += h + margin;
                 }
             }
+
+            //GROUPS
+            // GroupsRectangle:200,20, 800, 641; w:80, h:80, margin:10
+            Rectangle GroupsRectangle = new Rectangle(1200, 20, 800, 641);
+            int groupsMargin = 10, groupsW = 80, groupsH = 80;
+            int groupsX = GroupsRectangle.X + groupsMargin, groupsY = GroupsRectangle.Y + groupsMargin;
+            groupsViews = new List<IndexedValueView>();
+            foreach (IndexedValue p in theWorld.Groups)
+            {
+                groupsViews.Add(new IndexedValueView(p, new Point(groupsX, groupsY)));
+                groupsX += groupsW + groupsMargin;
+                if (groupsX > GroupsRectangle.Right)
+                {
+                    groupsX = GroupsRectangle.X + groupsMargin;
+                    groupsY += groupsH + groupsMargin;
+                }
+            }
         }
 
         /// <summary>
-        /// Method used to display all the Politicial indexed values on screen.
+        /// Method used to display all the indexed values on screen.
         /// </summary>
         /// <param name="g"></param>
-        public void PolViewsDisplay(Graphics g)
+        public void ViewsDisplay(Graphics g)
         {
             foreach (IndexedValueView q in polViews)
+            {
+                q.IndexedValueView_Draw(g);
+            }
+
+            foreach (IndexedValueView q in groupsViews)
             {
                 q.IndexedValueView_Draw(g);
             }

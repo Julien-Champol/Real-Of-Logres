@@ -45,11 +45,11 @@ namespace BaseSim2021
             this.y = coordinates.Y;
             this.widthRectangle = 70;
             this.heightRectangle = 70;
-            this.color = Color.CadetBlue;
+            this.color = Color.Black;
         }
 
         /// <summary>
-        /// Draw method of the IndexedValueView class.
+        /// Draw method of the IndexedValueView class. Ptints the name and the value of the IndexedValue.
         /// </summary>
         /// <param name="e"></param>
         public void IndexedValueView_Draw(Graphics g)
@@ -60,8 +60,10 @@ namespace BaseSim2021
             int width = this.widthRectangle;
             int height = this.heightRectangle;
             Rectangle displayedRectangle = new Rectangle(absciss, ordinate, width, height);
+            Rectangle valueRectangle = new Rectangle(absciss + 30, ordinate + 35, width/2, height/2);
             g.DrawRectangle(rectanglePen, displayedRectangle);
             g.DrawString(IndexedValue.Name, new Font("Times New Roman", 10, FontStyle.Bold), Brushes.Red, displayedRectangle);
+            g.DrawString(IndexedValue.Value.ToString(), new Font("Times New Roman", 10, FontStyle.Bold), Brushes.Red, valueRectangle);
         }
 
     }

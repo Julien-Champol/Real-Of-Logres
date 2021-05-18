@@ -107,12 +107,11 @@ namespace BaseSim2021
             this.outputListBox.FormattingEnabled = true;
             this.outputListBox.HorizontalScrollbar = true;
             this.outputListBox.ItemHeight = 16;
-            this.outputListBox.Location = new System.Drawing.Point(8, 7);
+            this.outputListBox.Location = new System.Drawing.Point(983, 519);
             this.outputListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.outputListBox.Name = "outputListBox";
-            this.outputListBox.Size = new System.Drawing.Size(855, 356);
+            this.outputListBox.Size = new System.Drawing.Size(236, 84);
             this.outputListBox.TabIndex = 1;
-            this.outputListBox.Visible = false;
             // 
             // GameView
             // 
