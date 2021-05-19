@@ -63,22 +63,40 @@ namespace BaseSim2021
         /// <param name="e"></param>
         private void GameView_MouseDown(object sender, MouseEventArgs e)
         {
-            if ()
+            if (Sélection(e.Location) != null && e.Button == MouseButtons.Left) //If the cursor is placed on one the IndexedValueView displays.
             {
-
+                NumericUpDown changesWindow = new NumericUpDown();
             }
         }
 
         /// <summary>
-        /// 
+        /// Returns the IndexedValueView corresponding to the mouse's location, null if there 
+        /// is no such IndexedValueView.
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
         private IndexedValueView Sélection(Point p)
         {
-            return polViews.FirstOrDefault(c => c.Contient(p));
+            if (polViews.FirstOrDefault(c => c.Contient(p)) != null)
+            {
+                return polViews.FirstOrDefault(c => c.Contient(p));
+            }
+            else if (groupsViews.FirstOrDefault(c => c.Contient(p)) != null)
+            {
+                return groupsViews.FirstOrDefault(c => c.Contient(p));
+            }
+            else
+            {
+                return null;
+            }
+
         }
 
+        /// <summary>
+        /// The paint method of the main window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GameView_Paint(object sender, PaintEventArgs e)
         {
             diffLabel.Text = "Difficulté : " + theWorld.TheDifficulty;
