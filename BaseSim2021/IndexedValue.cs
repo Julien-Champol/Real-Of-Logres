@@ -5,8 +5,8 @@ using System.Xml.Linq;
 namespace BaseSim2021
 {
     /// <summary>
-    /// This class represents an indexed (i. e., normalised between a min and max value) value
-    /// for indicators (a population statistic), groups (specific population groups, the value
+    /// This class represents an indexed (i. e., normalised between a min and max Value) Value
+    /// for indicators (a population statistic), groups (specific population groups, the Value
     /// indicating their happiness on a 0-100 scale), policies (spending, taxes, and quests,
     /// valued between 0-100, the only values set directly by the player), perks (positive situations
     /// giving benefits when active, scale is 0-1000), and crises (negative situations giving 
@@ -50,7 +50,7 @@ namespace BaseSim2021
         #endregion
         #region co-modification methods
         /// <summary>
-        /// Updates a value, and also checks for its possible activation
+        /// Updates a Value, and also checks for its possible activation
         /// </summary>
         public void Update()
         {
@@ -63,7 +63,7 @@ namespace BaseSim2021
             }
         }
         /// <summary>
-        /// Updates the influence on this value (to serve as a modifier for the value at the next step)
+        /// Updates the influence on this Value (to serve as a modifier for the Value at the next step)
         /// </summary>
         /// <param name="modifier">The update for this influence, -1.0 to 1.0</param>
         public void Influence(double modifier)
@@ -72,7 +72,7 @@ namespace BaseSim2021
             currentInfluence += realMod * (maxValue - minValue);
         }
         /// <summary>
-        /// Checks if the value becomes active or inactive, and reacts accordingly.
+        /// Checks if the Value becomes active or inactive, and reacts accordingly.
         /// </summary>
         public void CheckActivation()
         {
@@ -88,7 +88,7 @@ namespace BaseSim2021
             }
         }
         /// <summary>
-        /// Propagates the current value as influence to all other values
+        /// Propagates the current Value as influence to all other values
         /// </summary>
         public void Propagate()
         {
@@ -100,9 +100,9 @@ namespace BaseSim2021
         #endregion
         #region XML-based constructor
         /// <summary>
-        /// XML constructor for an indexed value
+        /// XML constructor for an indexed Value
         /// </summary>
-        /// <param name="element">The Xelement loaded from an XML file describing the value</param>
+        /// <param name="element">The Xelement loaded from an XML file describing the Value</param>
         public IndexedValue(XElement element)
         {
             if (element.Name.ToString() != "iValue") return;
@@ -188,7 +188,7 @@ namespace BaseSim2021
                         _ = int.TryParse(e.Value.ToString(), out g);
                         maxValue = g;
                         break;
-                    case "value":
+                    case "Value":
                         double h = 0;
                         _ = double.TryParse(e.Value.ToString(), out h);
                         actualValue = h;
@@ -217,7 +217,7 @@ namespace BaseSim2021
                     case "outputs":
                         foreach (XElement w in e.Nodes())
                         {
-                            if (w.Name.ToString() == "value" && w.HasAttributes)
+                            if (w.Name.ToString() == "Value" && w.HasAttributes)
                             {
                                 tmpOutputs.Add(w.Attribute("val").Value, double.Parse(w.Attribute("weight").Value.ToString()));
                             }
@@ -276,7 +276,7 @@ namespace BaseSim2021
         #endregion
         #region additional initialisation methods
         /// <summary>
-        /// Used after all values have been loaded to link that value to all outputs
+        /// Used after all values have been loaded to link that Value to all outputs
         /// </summary>
         /// <param name="values">The list of all values</param>
         internal void LinkTo(List<IndexedValue> values)
@@ -325,7 +325,7 @@ namespace BaseSim2021
             return (Name + ":" + Value);
         }
         /// <summary>
-        /// Computes a full description of the value
+        /// Computes a full description of the Value
         /// </summary>
         /// <returns>A long description</returns>
         public string CompletePresentation()

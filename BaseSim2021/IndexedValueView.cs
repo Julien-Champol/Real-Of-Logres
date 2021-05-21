@@ -14,7 +14,9 @@ namespace BaseSim2021
     class IndexedValueView
     {
 
-        private IndexedValue IndexedValue;
+        /* The IndexedValue we are representing */
+        private IndexedValue indexedValue;
+        public IndexedValue IndexedValue { get { return indexedValue; } }
 
         /* Coordinate */
         private int x;
@@ -40,7 +42,7 @@ namespace BaseSim2021
         /// <param name="coordinates"></param>
         public IndexedValueView(IndexedValue index, Point coordinates)
         {
-            this.IndexedValue = index;
+            this.indexedValue = index;
             this.x = coordinates.X;
             this.y = coordinates.Y;
             this.widthRectangle = 70;
@@ -49,7 +51,7 @@ namespace BaseSim2021
         }
 
         /// <summary>
-        /// Draw method of the IndexedValueView class. Ptints the name and the value of the IndexedValue.
+        /// Draw method of the IndexedValueView class. Ptints the name and the Value of the IndexedValue.
         /// </summary>
         /// <param name="e"></param>
         public void IndexedValueView_Draw(Graphics g)

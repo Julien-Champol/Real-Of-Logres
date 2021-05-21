@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PolicyModification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PolicyModification.Designer.cs">
+      <DependentUpon>PolicyModification.cs</DependentUpon>
+    </Compile>
     <Compile Include="IndexedValueView.cs" />
     <Compile Include="DifficultyView.cs">
       <SubType>Form</SubType>
@@ -71,6 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GameView.resx">
       <DependentUpon>GameView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PolicyModification.resx">
+      <DependentUpon>PolicyModification.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

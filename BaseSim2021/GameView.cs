@@ -65,13 +65,19 @@ namespace BaseSim2021
         {
             if (Sélection(e.Location) != null && e.Button == MouseButtons.Left) //If the cursor is placed on one the IndexedValueView displays.
             {
-                NumericUpDown changesWindow = new NumericUpDown();
+                IndexedValue policy = Sélection(e.Location).IndexedValue;
+                PolicyModification policyModification = new PolicyModification(policy);
+                if (policyModification.ShowDialog() == DialogResult.OK)
+                {
+                    policy.Influence(policyModification.Value);
+                    Refresh();
+                }
             }
         }
 
         /// <summary>
-        /// Returns the IndexedValueView corresponding to the mouse's location, null if there 
-        /// is no such IndexedValueView.
+        /// Returns the policy corresponding to the mouse's location, null if there 
+        /// is no such policy.
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
@@ -81,15 +87,10 @@ namespace BaseSim2021
             {
                 return polViews.FirstOrDefault(c => c.Contient(p));
             }
-            else if (groupsViews.FirstOrDefault(c => c.Contient(p)) != null)
-            {
-                return groupsViews.FirstOrDefault(c => c.Contient(p));
-            }
             else
             {
                 return null;
             }
-
         }
 
         /// <summary>

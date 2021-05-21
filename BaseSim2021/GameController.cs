@@ -217,9 +217,9 @@ namespace BaseSim2021
         #endregion
         #region public anchor methods
         /// <summary>
-        /// Method called when a value is activated
+        /// Method called when a Value is activated
         /// </summary>
-        /// <param name="indexedValue">The newly active value</param>
+        /// <param name="indexedValue">The newly active Value</param>
         public static void Activate(IndexedValue indexedValue)
         {
             theView.WriteLine("Nouvel effet actif : " + indexedValue.ToString());
@@ -228,9 +228,9 @@ namespace BaseSim2021
 
 
         /// <summary>
-        /// Method called when a value is deactivated
+        /// Method called when a Value is deactivated
         /// </summary>
-        /// <param name="indexedValue">The newly inactive value</param>
+        /// <param name="indexedValue">The newly inactive Value</param>
         public static void Deactivate(IndexedValue indexedValue)
         {
             theView.WriteLine("Fin de l'action de : " + indexedValue.ToString());
@@ -247,7 +247,7 @@ namespace BaseSim2021
         /// <summary>
         /// Method called whenever the game is lost
         /// </summary>
-        /// <param name="indexedValue">The value responsible or null for debt</param>
+        /// <param name="indexedValue">The Value responsible or null for debt</param>
 
         public static void LoseDialog(IndexedValue indexedValue)
         {
