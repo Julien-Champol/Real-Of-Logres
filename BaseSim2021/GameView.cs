@@ -63,13 +63,14 @@ namespace BaseSim2021
         /// <param name="e"></param>
         private void GameView_MouseDown(object sender, MouseEventArgs e)
         {
-            if (Sélection(e.Location) != null && e.Button == MouseButtons.Left) //If the cursor is placed on one the IndexedValueView displays.
+            if (e.Button == MouseButtons.Left) //If the cursor is placed on one of the IndexedValueView displayed.
             {
-                IndexedValue policy = Sélection(e.Location).IndexedValue;
+                IndexedValue policy = Sélection(e.Location)?.IndexedValue;
                 PolicyModification policyModification = new PolicyModification(policy);
                 if (policyModification.ShowDialog() == DialogResult.OK)
                 {
                     policy.Influence(policyModification.Value);
+                    policy.Update();
                     Refresh();
                 }
             }
