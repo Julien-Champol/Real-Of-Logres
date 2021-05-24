@@ -42,7 +42,7 @@ namespace BaseSim2021
             // 
             this.diffLabel.AutoSize = true;
             this.diffLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.diffLabel.Location = new System.Drawing.Point(697, 344);
+            this.diffLabel.Location = new System.Drawing.Point(653, 305);
             this.diffLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.diffLabel.Name = "diffLabel";
             this.diffLabel.Size = new System.Drawing.Size(22, 13);
@@ -53,7 +53,7 @@ namespace BaseSim2021
             // 
             this.turnLabel.AutoSize = true;
             this.turnLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.turnLabel.Location = new System.Drawing.Point(862, 344);
+            this.turnLabel.Location = new System.Drawing.Point(818, 305);
             this.turnLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.turnLabel.Name = "turnLabel";
             this.turnLabel.Size = new System.Drawing.Size(19, 13);
@@ -64,7 +64,7 @@ namespace BaseSim2021
             // 
             this.moneyLabel.AutoSize = true;
             this.moneyLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.moneyLabel.Location = new System.Drawing.Point(697, 435);
+            this.moneyLabel.Location = new System.Drawing.Point(653, 396);
             this.moneyLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.moneyLabel.Name = "moneyLabel";
             this.moneyLabel.Size = new System.Drawing.Size(16, 13);
@@ -75,7 +75,7 @@ namespace BaseSim2021
             // 
             this.gloryLabel.AutoSize = true;
             this.gloryLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.gloryLabel.Location = new System.Drawing.Point(865, 435);
+            this.gloryLabel.Location = new System.Drawing.Point(821, 396);
             this.gloryLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.gloryLabel.Name = "gloryLabel";
             this.gloryLabel.Size = new System.Drawing.Size(16, 13);
@@ -85,7 +85,7 @@ namespace BaseSim2021
             // 
             // nextButton
             // 
-            this.nextButton.Location = new System.Drawing.Point(955, 383);
+            this.nextButton.Location = new System.Drawing.Point(507, 305);
             this.nextButton.Margin = new System.Windows.Forms.Padding(2);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(80, 21);
@@ -109,7 +109,7 @@ namespace BaseSim2021
             // 
             this.outputListBox.FormattingEnabled = true;
             this.outputListBox.HorizontalScrollbar = true;
-            this.outputListBox.Location = new System.Drawing.Point(703, 491);
+            this.outputListBox.Location = new System.Drawing.Point(659, 452);
             this.outputListBox.Margin = new System.Windows.Forms.Padding(2);
             this.outputListBox.Name = "outputListBox";
             this.outputListBox.Size = new System.Drawing.Size(178, 69);

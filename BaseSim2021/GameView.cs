@@ -12,6 +12,9 @@ namespace BaseSim2021
         List<IndexedValueView> polViews;
         List<IndexedValueView> groupsViews;
         List<IndexedValueView> perksViews;
+        List<IndexedValueView> indicatorsViews;
+        List<IndexedValueView> questsViews;
+        List<IndexedValueView> taxesViews;
 
         /// <summary>
         /// The constructor for the main window
@@ -163,7 +166,7 @@ namespace BaseSim2021
         {
             // POLITICS
             // PolRectangle:0,20, 800, 641; w:135, h:70, margin:10
-            Rectangle PolRectangle = new Rectangle(0, 20, 800, 641);
+            Rectangle PolRectangle = new Rectangle(0, 20, 800, 100);
             int margin = 10, w = 135, h = 70;
             int x = PolRectangle.X + margin, y = PolRectangle.Y + margin;
             polViews = new List<IndexedValueView>();
@@ -196,7 +199,7 @@ namespace BaseSim2021
             }
 
             //PERKS
-            // Perksrectangle:0,900, 800, 641; w:80, h:80, margin:10
+            // Perksrectangle:0,370, 500, 641; w:80, h:80, margin:10
             Rectangle PerksRectangle = new Rectangle(0, 370, 500, 641);
             int perksMargin = 10, perksW = 135, perksH = 70;
             int perksX = PerksRectangle.X + perksMargin, perksY = PerksRectangle.Y + perksMargin;
@@ -209,6 +212,40 @@ namespace BaseSim2021
                 {
                     perksX = PerksRectangle.X + perksMargin;
                     perksY += perksH + perksMargin;
+                }
+            }
+
+            //INDICATORS
+            // Indicatorsrectangle:1000,120, 400, 100; w:80, h:80, margin:10
+            Rectangle IndicatorsRectangle = new Rectangle(1000, 120, 400, 100);
+            int indicatorsMargin = 10, indicatorsW = 135, indicatorsH = 70;
+            int indicatorsX = IndicatorsRectangle.X + indicatorsMargin, indicatorsY = IndicatorsRectangle.Y + indicatorsMargin;
+            indicatorsViews = new List<IndexedValueView>();
+            foreach (IndexedValue p in theWorld.Indicators)
+            {
+                indicatorsViews.Add(new IndexedValueView(p, new Point(indicatorsX, indicatorsY)));
+                indicatorsX += indicatorsW + indicatorsMargin;
+                if (indicatorsX > IndicatorsRectangle.Right)
+                {
+                    indicatorsX = IndicatorsRectangle.X + indicatorsMargin;
+                    indicatorsY += indicatorsH + indicatorsMargin;
+                }
+            }
+
+            //QUESTS
+            // QuestsRectangle:1000,220, 400, 100; w:80, h:80, margin:10
+            Rectangle QuestsRectangle = new Rectangle(1000, 300, 400, 100);
+            int questsMargin = 10, questsW = 135, questsH = 70;
+            int questsX = QuestsRectangle.X + questsMargin, questsY = QuestsRectangle.Y + questsMargin;
+            questsViews = new List<IndexedValueView>();
+            foreach (IndexedValue p in theWorld.Quests)
+            {
+                questsViews.Add(new IndexedValueView(p, new Point(questsX, questsY)));
+                questsX += questsW + questsMargin;
+                if (questsX > QuestsRectangle.Right)
+                {
+                    questsX = QuestsRectangle.X + questsMargin;
+                    questsY += questsH + questsMargin;
                 }
             }
         }
@@ -229,6 +266,18 @@ namespace BaseSim2021
                 q.IndexedValueView_Draw(g);
             }
             foreach (IndexedValueView q in perksViews)
+            {
+                q.IndexedValueView_Draw(g);
+            }
+            foreach (IndexedValueView q in indicatorsViews)
+            {
+                q.IndexedValueView_Draw(g);
+            }
+            foreach (IndexedValueView q in questsViews)
+            {
+                q.IndexedValueView_Draw(g);
+            }
+            foreach (IndexedValueView q in taxesViews)
             {
                 q.IndexedValueView_Draw(g);
             }
