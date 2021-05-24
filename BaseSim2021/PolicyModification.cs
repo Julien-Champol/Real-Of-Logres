@@ -14,7 +14,7 @@ namespace BaseSim2021
     {
 
         public IndexedValue policyChanged; //This attribute represents the policy we are currently modifying.
-        public int Value { get { return (int)numericUpDown1.Value; } } //This numeric Value is the one we'll give to the IndexedValue Value
+        public int numericUpDownValue { get { return (int)numericUpDown1.Value; } } //This numeric numericUpDownValue is the one we'll give to the IndexedValue numericUpDownValue
 
         /// <summary>
         /// Parameterized constructor of the class, helpful in the MouseDown method of the GameView class.
@@ -25,6 +25,8 @@ namespace BaseSim2021
             InitializeComponent();
             policyChanged = policy;
             numericUpDown1.Value = policy.Value;
+            numericUpDown1.Minimum = policy.MinValue;
+            numericUpDown1.Maximum = policy.MaxValue;
         }
     }
 }

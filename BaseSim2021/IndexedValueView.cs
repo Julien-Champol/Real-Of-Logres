@@ -45,13 +45,13 @@ namespace BaseSim2021
             this.indexedValue = index;
             this.x = coordinates.X;
             this.y = coordinates.Y;
-            this.widthRectangle = 70;
+            this.widthRectangle = 135;
             this.heightRectangle = 70;
             this.color = Color.Black;
         }
 
         /// <summary>
-        /// Draw method of the IndexedValueView class. Ptints the name and the Value of the IndexedValue.
+        /// Draw method of the IndexedValueView class. Ptints the name and the numericUpDownValue of the IndexedValue.
         /// </summary>
         /// <param name="e"></param>
         public void IndexedValueView_Draw(Graphics g)
@@ -62,10 +62,17 @@ namespace BaseSim2021
             int width = this.widthRectangle;
             int height = this.heightRectangle;
             Rectangle displayedRectangle = new Rectangle(absciss, ordinate, width, height);
-            Rectangle valueRectangle = new Rectangle(absciss + 30, ordinate + 35, width/2, height/2);
+            Rectangle type = new Rectangle(absciss + 35, ordinate, width, height);
+            Rectangle name = new Rectangle(absciss + 10, ordinate + 25, width, height / 2);
+            Rectangle valueRectangle = new Rectangle(absciss + 65, ordinate + 45, width / 2, height / 2);
+            Rectangle min = new Rectangle(absciss + 25, ordinate + 45, width / 2, height / 2);
+            Rectangle max = new Rectangle(absciss + 95, ordinate + 45, width / 2, height / 2);
             g.DrawRectangle(rectanglePen, displayedRectangle);
-            g.DrawString(IndexedValue.Name, new Font("Times New Roman", 10, FontStyle.Bold), Brushes.Red, displayedRectangle);
-            g.DrawString(IndexedValue.Value.ToString(), new Font("Times New Roman", 10, FontStyle.Bold), Brushes.Red, valueRectangle);
+            g.DrawString(IndexedValue.Type.ToString(), new Font("Times New Roman", 14, FontStyle.Bold), Brushes.Black, type);
+            g.DrawString(IndexedValue.Name, new Font("Times New Roman", 10, FontStyle.Bold), Brushes.Red, name);
+            g.DrawString(IndexedValue.Value.ToString(), new Font("Times New Roman", 10, FontStyle.Bold), Brushes.Blue, valueRectangle);
+            g.DrawString(IndexedValue.MinValue.ToString(), new Font("Times New Roman", 10, FontStyle.Bold), Brushes.Blue, min);
+            g.DrawString(IndexedValue.MaxValue.ToString(), new Font("Times New Roman", 10, FontStyle.Bold), Brushes.Blue, max);
         }
 
         /// <summary>

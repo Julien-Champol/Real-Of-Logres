@@ -11,6 +11,7 @@ namespace BaseSim2021
         private readonly WorldState theWorld;
         List<IndexedValueView> polViews;
         List<IndexedValueView> groupsViews;
+        List<IndexedValueView> perksViews;
 
         /// <summary>
         /// The constructor for the main window
@@ -19,6 +20,7 @@ namespace BaseSim2021
         {
             InitializeComponent();
             theWorld = world;
+            ListInitialization();
         }
 
         /// <summary>
@@ -69,8 +71,7 @@ namespace BaseSim2021
                 PolicyModification policyModification = new PolicyModification(policy);
                 if (policyModification.ShowDialog() == DialogResult.OK)
                 {
-                    policy.Influence(policyModification.Value);
-                    policy.Update();
+                    GameController.ApplyPolicyChanges(policy.Name + ' ' + policyModification.numericUpDownValue);
                     Refresh();
                 }
             }
@@ -106,7 +107,6 @@ namespace BaseSim2021
             moneyLabel.Text = "Trésor : " + theWorld.Money + " pièces d'or";
             gloryLabel.Text = "Gloire : " + theWorld.Glory;
             nextButton.Visible = true;
-            ListInitialization();
             ViewsDisplay(e.Graphics);
         }
         #endregion
@@ -162,9 +162,9 @@ namespace BaseSim2021
         public void ListInitialization()
         {
             // POLITICS
-            // PolRectangle:0,20, 800, 641; w:80, h:80, margin:10
+            // PolRectangle:0,20, 800, 641; w:135, h:70, margin:10
             Rectangle PolRectangle = new Rectangle(0, 20, 800, 641);
-            int margin = 10, w = 80, h = 80;
+            int margin = 10, w = 135, h = 70;
             int x = PolRectangle.X + margin, y = PolRectangle.Y + margin;
             polViews = new List<IndexedValueView>();
             foreach (IndexedValue p in theWorld.Policies)
@@ -179,9 +179,9 @@ namespace BaseSim2021
             }
 
             //GROUPS
-            // GroupsRectangle:200,20, 800, 641; w:80, h:80, margin:10
-            Rectangle GroupsRectangle = new Rectangle(1200, 20, 800, 641);
-            int groupsMargin = 10, groupsW = 80, groupsH = 80;
+            // GroupsRectangle:1000,20, 800, 641; w:135, h:70, margin:10
+            Rectangle GroupsRectangle = new Rectangle(1000, 20, 800, 641);
+            int groupsMargin = 10, groupsW = 135, groupsH = 70;
             int groupsX = GroupsRectangle.X + groupsMargin, groupsY = GroupsRectangle.Y + groupsMargin;
             groupsViews = new List<IndexedValueView>();
             foreach (IndexedValue p in theWorld.Groups)
@@ -192,6 +192,23 @@ namespace BaseSim2021
                 {
                     groupsX = GroupsRectangle.X + groupsMargin;
                     groupsY += groupsH + groupsMargin;
+                }
+            }
+
+            //PERKS
+            // Perksrectangle:0,900, 800, 641; w:80, h:80, margin:10
+            Rectangle PerksRectangle = new Rectangle(0, 370, 500, 641);
+            int perksMargin = 10, perksW = 135, perksH = 70;
+            int perksX = PerksRectangle.X + perksMargin, perksY = PerksRectangle.Y + perksMargin;
+            perksViews = new List<IndexedValueView>();
+            foreach (IndexedValue p in theWorld.Perks)
+            {
+                perksViews.Add(new IndexedValueView(p, new Point(perksX, perksY)));
+                perksX += perksW + perksMargin;
+                if (perksX > PerksRectangle.Right)
+                {
+                    perksX = PerksRectangle.X + perksMargin;
+                    perksY += perksH + perksMargin;
                 }
             }
         }
@@ -208,6 +225,10 @@ namespace BaseSim2021
             }
 
             foreach (IndexedValueView q in groupsViews)
+            {
+                q.IndexedValueView_Draw(g);
+            }
+            foreach (IndexedValueView q in perksViews)
             {
                 q.IndexedValueView_Draw(g);
             }

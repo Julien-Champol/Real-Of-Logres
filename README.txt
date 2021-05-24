@@ -5,8 +5,12 @@ Tentative d'adaptation de la taille du string name à la taille du carré de l'a
 Réussi.
 
 18/05/2021
-
 Suite de la création de la maquette. Début de l'exo 11.
 Réponse à l'événement mouseDown, Utilisation du code de DessinObjets.
 Problème : utilisation simultanée des listes de IndexedValueViews dans la méthode sélection.
 Une méthode paar liste -> pas opti.
+
+21/05
+Numeric updown, non fonctionnel méthode influence étrange.
+
+24/05

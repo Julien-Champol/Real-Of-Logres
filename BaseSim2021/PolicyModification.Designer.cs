@@ -37,38 +37,43 @@ namespace BaseSim2021
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(160, 71);
+            this.numericUpDown1.Location = new System.Drawing.Point(120, 58);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDown1.Size = new System.Drawing.Size(90, 20);
             this.numericUpDown1.TabIndex = 0;
             // 
             // OkButton
             // 
             this.OkButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.OkButton.Location = new System.Drawing.Point(438, 27);
+            this.OkButton.Location = new System.Drawing.Point(328, 22);
+            this.OkButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.OkButton.Name = "OkButton";
-            this.OkButton.Size = new System.Drawing.Size(119, 34);
+            this.OkButton.Size = new System.Drawing.Size(89, 28);
             this.OkButton.TabIndex = 1;
             this.OkButton.Text = "OK";
             this.OkButton.UseVisualStyleBackColor = true;
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(438, 81);
+            this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.CancelButton.Location = new System.Drawing.Point(328, 66);
+            this.CancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(119, 35);
+            this.CancelButton.Size = new System.Drawing.Size(89, 28);
             this.CancelButton.TabIndex = 2;
             this.CancelButton.Text = "Annuler";
             this.CancelButton.UseVisualStyleBackColor = true;
             // 
             // PolicyModification
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(675, 139);
+            this.ClientSize = new System.Drawing.Size(506, 113);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.numericUpDown1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PolicyModification";
             this.Text = "Policy modifications form";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

@@ -8,7 +8,7 @@ namespace BaseSim2021
     /// Linear and Sigmoid are from -1 - +1 to -1 - +1, NoPositive is to -1 - 0,
     /// while NoNegative and the Policy functions are to 0 - +1. The first should
     /// be used for indicators or groups (in order to reverse the effect when the
-    /// Value is less than the average point), the others for policies, perks and
+    /// numericUpDownValue is less than the average point), the others for policies, perks and
     /// crises (in order to have an effect from the first active values onwards).
     /// </summary>
     public static class FunLibrary

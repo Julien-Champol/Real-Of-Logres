@@ -5,8 +5,8 @@ using System.Xml.Linq;
 namespace BaseSim2021
 {
     /// <summary>
-    /// This class represents an indexed (i. e., normalised between a min and max Value) Value
-    /// for indicators (a population statistic), groups (specific population groups, the Value
+    /// This class represents an indexed (i. e., normalised between a min and max value) value
+    /// for indicators (a population statistic), groups (specific population groups, the value
     /// indicating their happiness on a 0-100 scale), policies (spending, taxes, and quests,
     /// valued between 0-100, the only values set directly by the player), perks (positive situations
     /// giving benefits when active, scale is 0-1000), and crises (negative situations giving 
@@ -14,17 +14,18 @@ namespace BaseSim2021
     /// </summary>
     public class IndexedValue
     {
-        public enum ValueType { Indicator=0, Group=1, Policy=2, Perk=3, Crisis=4 };
-        public enum ResultType { None=0, Win=1, Lose=2};
+        public enum ValueType { Indicator = 0, Group = 1, Policy = 2, Perk = 3, Crisis = 4 };
+        public enum ResultType { None = 0, Win = 1, Lose = 2 };
+
         #region attributes and encapsulated properties
-        public ResultType Result { get; private set; } = ResultType.None; 
+        public ResultType Result { get; private set; } = ResultType.None;
         public ValueType Type { get; private set; } = ValueType.Indicator;
         public bool? Active { get; private set; } = null;
         private readonly int? activationThreshold = null;
         private readonly int? deactivationThreshold = null;
         public int? AvailableAt { get; private set; } = null;
-        private readonly int minValue=0;
-        private readonly int maxValue=0;
+        private readonly int minValue = 0;
+        private readonly int maxValue = 0;
         private double actualValue;
         private double currentInfluence = 0;
         public int? MoneyAmount { get; private set; } = null;
@@ -50,7 +51,7 @@ namespace BaseSim2021
         #endregion
         #region co-modification methods
         /// <summary>
-        /// Updates a Value, and also checks for its possible activation
+        /// Updates a value, and also checks for its possible activation
         /// </summary>
         public void Update()
         {
@@ -63,7 +64,7 @@ namespace BaseSim2021
             }
         }
         /// <summary>
-        /// Updates the influence on this Value (to serve as a modifier for the Value at the next step)
+        /// Updates the influence on this value (to serve as a modifier for the value at the next step)
         /// </summary>
         /// <param name="modifier">The update for this influence, -1.0 to 1.0</param>
         public void Influence(double modifier)
@@ -72,7 +73,7 @@ namespace BaseSim2021
             currentInfluence += realMod * (maxValue - minValue);
         }
         /// <summary>
-        /// Checks if the Value becomes active or inactive, and reacts accordingly.
+        /// Checks if the value becomes active or inactive, and reacts accordingly.
         /// </summary>
         public void CheckActivation()
         {
@@ -88,7 +89,7 @@ namespace BaseSim2021
             }
         }
         /// <summary>
-        /// Propagates the current Value as influence to all other values
+        /// Propagates the current value as influence to all other values
         /// </summary>
         public void Propagate()
         {
@@ -100,9 +101,9 @@ namespace BaseSim2021
         #endregion
         #region XML-based constructor
         /// <summary>
-        /// XML constructor for an indexed Value
+        /// XML constructor for an indexed value
         /// </summary>
-        /// <param name="element">The Xelement loaded from an XML file describing the Value</param>
+        /// <param name="element">The Xelement loaded from an XML file describing the value</param>
         public IndexedValue(XElement element)
         {
             if (element.Name.ToString() != "iValue") return;
@@ -188,7 +189,7 @@ namespace BaseSim2021
                         _ = int.TryParse(e.Value.ToString(), out g);
                         maxValue = g;
                         break;
-                    case "Value":
+                    case "value":
                         double h = 0;
                         _ = double.TryParse(e.Value.ToString(), out h);
                         actualValue = h;
@@ -217,7 +218,7 @@ namespace BaseSim2021
                     case "outputs":
                         foreach (XElement w in e.Nodes())
                         {
-                            if (w.Name.ToString() == "Value" && w.HasAttributes)
+                            if (w.Name.ToString() == "value" && w.HasAttributes)
                             {
                                 tmpOutputs.Add(w.Attribute("val").Value, double.Parse(w.Attribute("weight").Value.ToString()));
                             }
@@ -240,7 +241,7 @@ namespace BaseSim2021
         {
             PreviewPolicyChange(ref amount, out mCost, out gCost);
             actualValue = amount;
-            if (actualValue>=minValue)
+            if (actualValue >= minValue)
             {
                 Active = true;
             }
@@ -276,14 +277,14 @@ namespace BaseSim2021
         #endregion
         #region additional initialisation methods
         /// <summary>
-        /// Used after all values have been loaded to link that Value to all outputs
+        /// Used after all values have been loaded to link that value to all outputs
         /// </summary>
         /// <param name="values">The list of all values</param>
         internal void LinkTo(List<IndexedValue> values)
         {
             foreach (string s in tmpOutputs.Keys)
             {
-                IndexedValue output = values.Exists(v=>v.Name.Equals(s))?values.Find(v => v.Name.Equals(s)):null;
+                IndexedValue output = values.Exists(v => v.Name.Equals(s)) ? values.Find(v => v.Name.Equals(s)) : null;
                 if (output != null)
                 {
                     OutputWeights.Add(output, tmpOutputs[s]);
@@ -296,7 +297,7 @@ namespace BaseSim2021
         /// <param name="diff">The selected difficulty</param>
         internal void ActivateForDiff(WorldState.Difficulty diff)
         {
-            if (Active==false && tmpDifficulty!=null)
+            if (Active == false && tmpDifficulty != null)
             {
                 switch (tmpDifficulty.ToLower())
                 {
@@ -325,7 +326,7 @@ namespace BaseSim2021
             return (Name + ":" + Value);
         }
         /// <summary>
-        /// Computes a full description of the Value
+        /// Computes a full description of the value
         /// </summary>
         /// <returns>A long description</returns>
         public string CompletePresentation()
@@ -334,7 +335,7 @@ namespace BaseSim2021
             pres += Environment.NewLine;
             pres += Description + Environment.NewLine;
             pres += "Valeur : <" + minValue + " :" + Value + ": " + maxValue + ">" + Environment.NewLine;
-            if (MoneyAmount.HasValue && MoneyAmount.GetValueOrDefault(0)<0)
+            if (MoneyAmount.HasValue && MoneyAmount.GetValueOrDefault(0) < 0)
             {
                 pres += "Coûte " + MoneyImpacted + " pièces d'or par tour" + Environment.NewLine;
             }
