@@ -40,14 +40,14 @@ namespace BaseSim2021
         /// </summary>
         /// <param name="index"></param>
         /// <param name="coordinates"></param>
-        public IndexedValueView(IndexedValue index, Point coordinates)
+        public IndexedValueView(IndexedValue index, Point coordinates, Color rectangleColor)
         {
             this.indexedValue = index;
             this.x = coordinates.X;
             this.y = coordinates.Y;
             this.widthRectangle = 135;
             this.heightRectangle = 70;
-            this.color = Color.Black;
+            this.color = rectangleColor;
         }
 
         /// <summary>

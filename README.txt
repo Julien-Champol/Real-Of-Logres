@@ -15,3 +15,6 @@ Numeric updown, non fonctionnel méthode influence étrange.
 
 24/05
 Fin de la maquette, numeric updown fonctionnel.
+
+25/05
+MessageBox fonctionnel.

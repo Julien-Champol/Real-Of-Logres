@@ -12,9 +12,8 @@ namespace BaseSim2021
         List<IndexedValueView> polViews;
         List<IndexedValueView> groupsViews;
         List<IndexedValueView> perksViews;
+        List<IndexedValueView> crisisViews;
         List<IndexedValueView> indicatorsViews;
-        List<IndexedValueView> questsViews;
-        List<IndexedValueView> taxesViews;
 
         /// <summary>
         /// The constructor for the main window
@@ -70,19 +69,27 @@ namespace BaseSim2021
         {
             if (e.Button == MouseButtons.Left) //If the cursor is placed on one of the IndexedValueView displayed.
             {
-                IndexedValue policy = Sélection(e.Location)?.IndexedValue;
-                PolicyModification policyModification = new PolicyModification(policy);
-                if (policyModification.ShowDialog() == DialogResult.OK)
+                IndexedValue actualSelection = Sélection(e.Location)?.IndexedValue;
+                if (theWorld.Policies.Contains(actualSelection) && actualSelection.Active == true)
                 {
-                    GameController.ApplyPolicyChanges(policy.Name + ' ' + policyModification.numericUpDownValue);
-                    Refresh();
+                    PolicyModification policyModification = new PolicyModification(actualSelection);
+                    if (policyModification.ShowDialog() == DialogResult.OK)
+                    {
+                        GameController.ApplyPolicyChanges(actualSelection.Name + ' ' + policyModification.numericUpDownValue);
+                        Refresh();
+                    }
+
+                }
+                else if (!theWorld.Policies.Contains(actualSelection))
+                {
+                    var description = MessageBox.Show(actualSelection.Description, actualSelection.Name, MessageBoxButtons.OK);
                 }
             }
         }
 
         /// <summary>
-        /// Returns the policy corresponding to the mouse's location, null if there 
-        /// is no such policy.
+        /// Returns the actualSelection corresponding to the mouse's location, null if there 
+        /// is no such actualSelection.
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
@@ -91,6 +98,22 @@ namespace BaseSim2021
             if (polViews.FirstOrDefault(c => c.Contient(p)) != null)
             {
                 return polViews.FirstOrDefault(c => c.Contient(p));
+            }
+            else if (indicatorsViews.FirstOrDefault(c => c.Contient(p)) != null)
+            {
+                return indicatorsViews.FirstOrDefault(c => c.Contient(p));
+            }
+            else if (crisisViews.FirstOrDefault(c => c.Contient(p)) != null)
+            {
+                return crisisViews.FirstOrDefault(c => c.Contient(p));
+            }
+            else if (perksViews.FirstOrDefault(c => c.Contient(p)) != null)
+            {
+                return perksViews.FirstOrDefault(c => c.Contient(p));
+            }
+            else if (groupsViews.FirstOrDefault(c => c.Contient(p)) != null)
+            {
+                return groupsViews.FirstOrDefault(c => c.Contient(p));
             }
             else
             {
@@ -172,7 +195,7 @@ namespace BaseSim2021
             polViews = new List<IndexedValueView>();
             foreach (IndexedValue p in theWorld.Policies)
             {
-                polViews.Add(new IndexedValueView(p, new Point(x, y)));
+                polViews.Add(new IndexedValueView(p, new Point(x, y), Color.Blue));
                 x += w + margin;
                 if (x > PolRectangle.Right)
                 {
@@ -189,7 +212,7 @@ namespace BaseSim2021
             groupsViews = new List<IndexedValueView>();
             foreach (IndexedValue p in theWorld.Groups)
             {
-                groupsViews.Add(new IndexedValueView(p, new Point(groupsX, groupsY)));
+                groupsViews.Add(new IndexedValueView(p, new Point(groupsX, groupsY), Color.Red));
                 groupsX += groupsW + groupsMargin;
                 if (groupsX > GroupsRectangle.Right)
                 {
@@ -206,7 +229,7 @@ namespace BaseSim2021
             perksViews = new List<IndexedValueView>();
             foreach (IndexedValue p in theWorld.Perks)
             {
-                perksViews.Add(new IndexedValueView(p, new Point(perksX, perksY)));
+                perksViews.Add(new IndexedValueView(p, new Point(perksX, perksY), Color.Black));
                 perksX += perksW + perksMargin;
                 if (perksX > PerksRectangle.Right)
                 {
@@ -215,37 +238,37 @@ namespace BaseSim2021
                 }
             }
 
+            //CRISIS
+            // CrisisRectangle:1000,120, 400, 100; w:80, h:80, margin:10
+            Rectangle CrisisRectangle = new Rectangle(1000, 120, 400, 100);
+            int criseMargin = 10, criseW = 135, criseH = 70;
+            int criseX = CrisisRectangle.X + criseMargin, criseY = CrisisRectangle.Y + criseMargin;
+            crisisViews = new List<IndexedValueView>();
+            foreach (IndexedValue p in theWorld.Crises)
+            {
+                crisisViews.Add(new IndexedValueView(p, new Point(criseX, criseY), Color.Brown));
+                criseX += criseW + criseMargin;
+                if (criseX > CrisisRectangle.Right)
+                {
+                    criseX = CrisisRectangle.X + criseMargin;
+                    criseY += criseH + criseMargin;
+                }
+            }
+
             //INDICATORS
-            // Indicatorsrectangle:1000,120, 400, 100; w:80, h:80, margin:10
-            Rectangle IndicatorsRectangle = new Rectangle(1000, 120, 400, 100);
+            // Indicatorsrectangle:1300,120, 400, 200; w:80, h:80, margin:10
+            Rectangle IndicatorsRectangle = new Rectangle(1000, 320, 400, 100);
             int indicatorsMargin = 10, indicatorsW = 135, indicatorsH = 70;
             int indicatorsX = IndicatorsRectangle.X + indicatorsMargin, indicatorsY = IndicatorsRectangle.Y + indicatorsMargin;
             indicatorsViews = new List<IndexedValueView>();
             foreach (IndexedValue p in theWorld.Indicators)
             {
-                indicatorsViews.Add(new IndexedValueView(p, new Point(indicatorsX, indicatorsY)));
+                indicatorsViews.Add(new IndexedValueView(p, new Point(indicatorsX, indicatorsY), Color.BlueViolet));
                 indicatorsX += indicatorsW + indicatorsMargin;
                 if (indicatorsX > IndicatorsRectangle.Right)
                 {
                     indicatorsX = IndicatorsRectangle.X + indicatorsMargin;
                     indicatorsY += indicatorsH + indicatorsMargin;
-                }
-            }
-
-            //QUESTS
-            // QuestsRectangle:1000,220, 400, 100; w:80, h:80, margin:10
-            Rectangle QuestsRectangle = new Rectangle(1000, 300, 400, 100);
-            int questsMargin = 10, questsW = 135, questsH = 70;
-            int questsX = QuestsRectangle.X + questsMargin, questsY = QuestsRectangle.Y + questsMargin;
-            questsViews = new List<IndexedValueView>();
-            foreach (IndexedValue p in theWorld.Quests)
-            {
-                questsViews.Add(new IndexedValueView(p, new Point(questsX, questsY)));
-                questsX += questsW + questsMargin;
-                if (questsX > QuestsRectangle.Right)
-                {
-                    questsX = QuestsRectangle.X + questsMargin;
-                    questsY += questsH + questsMargin;
                 }
             }
         }
@@ -258,28 +281,41 @@ namespace BaseSim2021
         {
             foreach (IndexedValueView q in polViews)
             {
-                q.IndexedValueView_Draw(g);
+                if (q.IndexedValue.Active == true || q.IndexedValue.AvailableAt <= theWorld.Turns)
+                {
+                    q.IndexedValueView_Draw(g);
+
+                }
             }
 
             foreach (IndexedValueView q in groupsViews)
             {
-                q.IndexedValueView_Draw(g);
+                if (q.IndexedValue.Active == true || q.IndexedValue.AvailableAt <= theWorld.Turns)
+                {
+                    q.IndexedValueView_Draw(g);
+                }
             }
+
             foreach (IndexedValueView q in perksViews)
             {
-                q.IndexedValueView_Draw(g);
+                if (q.IndexedValue.Active == true || q.IndexedValue.AvailableAt <= theWorld.Turns)
+                {
+                    q.IndexedValueView_Draw(g);
+                }
+            }
+            foreach (IndexedValueView q in crisisViews)
+            {
+                if (q.IndexedValue.Active == true || q.IndexedValue.AvailableAt <= theWorld.Turns)
+                {
+                    q.IndexedValueView_Draw(g);
+                }
             }
             foreach (IndexedValueView q in indicatorsViews)
             {
-                q.IndexedValueView_Draw(g);
-            }
-            foreach (IndexedValueView q in questsViews)
-            {
-                q.IndexedValueView_Draw(g);
-            }
-            foreach (IndexedValueView q in taxesViews)
-            {
-                q.IndexedValueView_Draw(g);
+                if (q.IndexedValue.Active == true || q.IndexedValue.AvailableAt <= theWorld.Turns)
+                {
+                    q.IndexedValueView_Draw(g);
+                }
             }
         }
 
