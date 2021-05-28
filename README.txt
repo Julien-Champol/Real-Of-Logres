@@ -17,4 +17,8 @@ Numeric updown, non fonctionnel méthode influence étrange.
 Fin de la maquette, numeric updown fonctionnel.
 
 25/05
-MessageBox fonctionnel.
+MessageBox fonctionnel. Sécurisation des cliques.
+Début des liens.
+
+28/05 
+Traitement de l'exerice 14.

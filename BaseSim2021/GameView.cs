@@ -15,6 +15,15 @@ namespace BaseSim2021
         List<IndexedValueView> crisisViews;
         List<IndexedValueView> indicatorsViews;
 
+
+        public IndexedValue MouseValue { get; set; }
+        List<IndexedValueView> linkedValues = new List<IndexedValueView>();
+
+        private bool actuallyDrawing;
+
+        private Point startingPoint;
+        private Point linkedPoint;
+
         /// <summary>
         /// The constructor for the main window
         /// </summary>
@@ -80,7 +89,7 @@ namespace BaseSim2021
                     }
 
                 }
-                else if (!theWorld.Policies.Contains(actualSelection))
+                else if (!theWorld.Policies.Contains(actualSelection) && actualSelection?.Active == true || actualSelection?.AvailableAt <= theWorld.Turns)
                 {
                     var description = MessageBox.Show(actualSelection.Description, actualSelection.Name, MessageBoxButtons.OK);
                 }
@@ -134,6 +143,11 @@ namespace BaseSim2021
             gloryLabel.Text = "Gloire : " + theWorld.Glory;
             nextButton.Visible = true;
             ViewsDisplay(e.Graphics);
+            if (actuallyDrawing)
+            {
+                e.Graphics.DrawLine(Pens.Green, startingPoint, linkedPoint);
+                actuallyDrawing = false;
+            }
         }
         #endregion
 
@@ -167,16 +181,6 @@ namespace BaseSim2021
         {
             MessageBox.Show("Partie gagnée.");
             nextButton.Enabled = false;
-        }
-
-        private void gloryLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void inputTextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         #region Initialization of the lists and screen display of the IndexedValueViews
@@ -319,6 +323,56 @@ namespace BaseSim2021
             }
         }
 
-        #endregion
+        /// <summary>
+        /// The Mouse_Move event handler of the main window, method where we save the value of the IndexedValue
+        /// where the mouse is.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GameView_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Sélection(e.Location)?.IndexedValue.Active == true || Sélection(e.Location)?.IndexedValue.AvailableAt <= theWorld.Turns)
+            { MouseValue = Sélection(e.Location)?.IndexedValue; }
+            if (MouseValue != null)
+            {
+                linkedValues.Clear();
+                if (MouseValue.OutputWeights != null && MouseValue.OutputWeights.Count > 0)
+                {
+                    foreach (IndexedValue q in MouseValue.OutputWeights.Keys)
+                    {
+                        //Pas polViews
+                        linkedValues.Add(polViews.FirstOrDefault(pol => pol.IndexedValue.Equals(q)));
+                    }
+
+                    actuallyDrawing = true;
+                    foreach (IndexedValueView r in linkedValues)
+                    {
+                        startingPoint = (e.Location);
+                        linkedPoint = new Point(r.X, r.Y);
+                    }
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// The method handling the MouseUp event of the main window. Useful to display the links between the IndexedValues.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GameView_MouseUp(object sender, MouseEventArgs e)
+        {/*
+            if (MouseValue != null)
+            {
+                actuallyDrawing = true;
+                foreach (IndexedValueView q in linkedValues)
+                {
+                    startingPoint = (e.Location);
+                    linkedPoint = new Point(q.X, q.Y);
+                }
+            }
+            */
+            #endregion
+        }
     }
 }

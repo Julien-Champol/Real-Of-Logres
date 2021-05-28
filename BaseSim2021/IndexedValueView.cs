@@ -19,8 +19,11 @@ namespace BaseSim2021
         public IndexedValue IndexedValue { get { return indexedValue; } }
 
         /* Coordinate */
-        private int x;
-        private int y;
+        private readonly int x;
+        public int X { get { return x; } }
+
+        private readonly int y;
+        public int Y { get { return y; } }
 
         /* Size of the rectangle. */
         private int widthRectangle;
@@ -85,6 +88,5 @@ namespace BaseSim2021
             Rectangle r = new Rectangle(this.x, this.y, this.widthRectangle, this.heightRectangle);
             return r.Contains(p);
         }
-
     }
 }
