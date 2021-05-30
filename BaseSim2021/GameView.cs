@@ -15,14 +15,15 @@ namespace BaseSim2021
         List<IndexedValueView> crisisViews;
         List<IndexedValueView> indicatorsViews;
 
-
+        /// <summary>
+        /// The necessary attributes to display the links between the value.
+        /// </summary>
         public IndexedValue MouseValue { get; set; }
         List<IndexedValueView> linkedValues = new List<IndexedValueView>();
-
         private bool actuallyDrawing;
-
         private Point startingPoint;
-        private Point linkedPoint;
+        private List<IndexedValueView> linkedPoints = new List<IndexedValueView>();
+        private Pen linksPen = new Pen(Color.Black);
 
         /// <summary>
         /// The constructor for the main window
@@ -146,9 +147,43 @@ namespace BaseSim2021
             nextButton.Visible = true;
             ViewsDisplay(e.Graphics);
 
-            if (actuallyDrawing)
+            if (actuallyDrawing == true)
             {
-                e.Graphics.DrawLine(Pens.Green, startingPoint, linkedPoint);
+                foreach (IndexedValueView link in linkedPoints)
+                {
+                    if (MouseValue.OutputWeights.ContainsKey(link.IndexedValue))
+                    {
+                        if (MouseValue?.OutputWeights[link.IndexedValue] < 0)
+                        {
+                            linksPen = new Pen(Color.Red);
+                            linksPen.Width = 2.5F;
+                            linksPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                        }
+                        else if (MouseValue?.OutputWeights[link.IndexedValue] > 0
+                            && MouseValue.OutputWeights[link.IndexedValue].ToString().Contains("0,00"))
+                        {
+                            linksPen = new Pen(Color.Orange);
+                            linksPen.Width = 2.5F;
+                            linksPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                        }
+                        else if (MouseValue?.OutputWeights[link.IndexedValue] > 0
+                            && MouseValue.OutputWeights[link.IndexedValue].ToString().Contains("0,0"))
+                        {
+                            linksPen = new Pen(Color.Purple);
+                            linksPen.Width = 2.5F;
+                            linksPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                        }
+                        else if (MouseValue?.OutputWeights[link.IndexedValue] > 0
+                            && MouseValue.OutputWeights[link.IndexedValue].ToString().Contains("0,"))
+                        {
+                            linksPen = new Pen(Color.Green);
+                            linksPen.Width = 2.5F;
+                            linksPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                        }
+                        Point thePoint = new Point(link.X + 40, link.Y + 40);
+                        e.Graphics.DrawLine(linksPen, startingPoint, thePoint);
+                    }
+                }
             }
         }
         #endregion
@@ -287,16 +322,21 @@ namespace BaseSim2021
         {
             foreach (IndexedValueView q in polViews)
             {
-                if (q.IndexedValue.Active == true || q.IndexedValue.AvailableAt <= theWorld.Turns)
+                if ((q.IndexedValue.Active == true || q.IndexedValue.AvailableAt <= theWorld.Turns)
+                    && (MouseValue != null && MouseValue.OutputWeights.Keys.Contains(q.IndexedValue)
+                    || (MouseValue != null && MouseValue.Equals(q.IndexedValue)) || MouseValue == null
+                    || MouseValue.OutputWeights == null))
                 {
                     q.IndexedValueView_Draw(g);
-
                 }
             }
 
             foreach (IndexedValueView q in groupsViews)
             {
-                if (q.IndexedValue.Active == true || q.IndexedValue.AvailableAt <= theWorld.Turns)
+                if ((q.IndexedValue.Active == true || q.IndexedValue.AvailableAt <= theWorld.Turns)
+                    && (MouseValue != null && MouseValue.OutputWeights.Keys.Contains(q.IndexedValue)
+                    || (MouseValue != null && MouseValue.Equals(q.IndexedValue)) || MouseValue == null
+                    || MouseValue.OutputWeights == null))
                 {
                     q.IndexedValueView_Draw(g);
                 }
@@ -304,21 +344,30 @@ namespace BaseSim2021
 
             foreach (IndexedValueView q in perksViews)
             {
-                if (q.IndexedValue.Active == true || q.IndexedValue.AvailableAt <= theWorld.Turns)
+                if ((q.IndexedValue.Active == true || q.IndexedValue.AvailableAt <= theWorld.Turns)
+                    && (MouseValue != null && MouseValue.OutputWeights.Keys.Contains(q.IndexedValue)
+                    || (MouseValue != null && MouseValue.Equals(q.IndexedValue)) || MouseValue == null
+                    || MouseValue.OutputWeights == null))
                 {
                     q.IndexedValueView_Draw(g);
                 }
             }
             foreach (IndexedValueView q in crisisViews)
             {
-                if (q.IndexedValue.Active == true || q.IndexedValue.AvailableAt <= theWorld.Turns)
+                if ((q.IndexedValue.Active == true || q.IndexedValue.AvailableAt <= theWorld.Turns)
+                    && (MouseValue != null && MouseValue.OutputWeights.Keys.Contains(q.IndexedValue)
+                    || (MouseValue != null && MouseValue.Equals(q.IndexedValue)) || MouseValue == null
+                    || MouseValue.OutputWeights == null))
                 {
                     q.IndexedValueView_Draw(g);
                 }
             }
             foreach (IndexedValueView q in indicatorsViews)
             {
-                if (q.IndexedValue.Active == true || q.IndexedValue.AvailableAt <= theWorld.Turns)
+                if ((q.IndexedValue.Active == true || q.IndexedValue.AvailableAt <= theWorld.Turns)
+                    && (MouseValue != null && MouseValue.OutputWeights.Keys.Contains(q.IndexedValue)
+                    || (MouseValue != null && MouseValue.Equals(q.IndexedValue)) || MouseValue == null
+                    || MouseValue.OutputWeights == null))
                 {
                     q.IndexedValueView_Draw(g);
                 }
@@ -333,11 +382,13 @@ namespace BaseSim2021
         /// <param name="e"></param>
         private void GameView_MouseMove(object sender, MouseEventArgs e)
         {
+            actuallyDrawing = true;
             if (Sélection(e.Location)?.IndexedValue.Active == true || Sélection(e.Location)?.IndexedValue.AvailableAt <= theWorld.Turns)
             { MouseValue = Sélection(e.Location)?.IndexedValue; }
 
-            if (MouseValue != null)
+            if (MouseValue != null && theWorld.Policies.Contains(MouseValue))
             {
+                linkedPoints.Clear();
                 linkedValues.Clear();
                 if (MouseValue.OutputWeights != null && MouseValue.OutputWeights.Count > 0)
                 {
@@ -349,6 +400,24 @@ namespace BaseSim2021
                         linkedValues.Add(groupsViews.FirstOrDefault(ac => ac.IndexedValue.Equals(q)));
                     }
                 }
+
+                foreach (IndexedValueView r in linkedValues)
+                {
+                    if (r != null && r.IndexedValue.Active == true)
+                    {
+                        startingPoint =
+                            new Point(polViews.FirstOrDefault(ac => ac.IndexedValue.Equals(MouseValue)).X + 40,
+                            polViews.FirstOrDefault(ac => ac.IndexedValue.Equals(MouseValue)).Y + 40);
+                        linkedPoints.Add(r);
+                    }
+                }
+
+                if (Sélection(e.Location)?.IndexedValue != MouseValue)
+                {
+                    actuallyDrawing = false;
+                    MouseValue = null;
+                }
+                Refresh();
             }
 
         }
@@ -362,18 +431,7 @@ namespace BaseSim2021
         /// <param name="e"></param>
         private void GameView_MouseUp(object sender, MouseEventArgs e)
         {
-            if (MouseValue != null)
-            {
-                actuallyDrawing = true;
-                foreach (IndexedValueView r in linkedValues)
-                {
-                    if (r != null)
-                    {
-                        startingPoint = (e.Location);
-                        linkedPoint = new Point((r.X), (r.Y));
-                    }
-                }
-            }
+
         }
         #endregion
     }
