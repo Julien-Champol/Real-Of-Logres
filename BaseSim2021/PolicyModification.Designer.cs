@@ -38,7 +38,7 @@ namespace BaseSim2021
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(120, 58);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(90, 20);
             this.numericUpDown1.TabIndex = 0;
@@ -47,7 +47,7 @@ namespace BaseSim2021
             // 
             this.OkButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.OkButton.Location = new System.Drawing.Point(328, 22);
-            this.OkButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OkButton.Margin = new System.Windows.Forms.Padding(2);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(89, 28);
             this.OkButton.TabIndex = 1;
@@ -58,7 +58,7 @@ namespace BaseSim2021
             // 
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.CancelButton.Location = new System.Drawing.Point(328, 66);
-            this.CancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CancelButton.Margin = new System.Windows.Forms.Padding(2);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(89, 28);
             this.CancelButton.TabIndex = 2;
@@ -73,7 +73,7 @@ namespace BaseSim2021
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.numericUpDown1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PolicyModification";
             this.Text = "Policy modifications form";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

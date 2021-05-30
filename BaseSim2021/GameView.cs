@@ -34,6 +34,9 @@ namespace BaseSim2021
             theWorld = world;
             ListInitialization();
             actuallyDrawing = false;
+
+            //ValueExplorer test = new ValueExplorer(polViews.ElementAt(0).IndexedValue);
+            //test.Show();
         }
 
         /// <summary>
@@ -84,7 +87,7 @@ namespace BaseSim2021
                 IndexedValue actualSelection = Sélection(e.Location)?.IndexedValue;
                 if (theWorld.Policies.Contains(actualSelection) && actualSelection.Active == true)
                 {
-                    PolicyModification policyModification = new PolicyModification(actualSelection);
+                    ValueExplorer policyModification = new ValueExplorer(actualSelection);
                     if (policyModification.ShowDialog() == DialogResult.OK)
                     {
                         GameController.ApplyPolicyChanges(actualSelection.Name + ' ' + policyModification.numericUpDownValue);
@@ -151,7 +154,7 @@ namespace BaseSim2021
             {
                 foreach (IndexedValueView link in linkedPoints)
                 {
-                    if (MouseValue.OutputWeights.ContainsKey(link.IndexedValue))
+                    if (link.IndexedValue != null && MouseValue != null && MouseValue.OutputWeights.ContainsKey(link.IndexedValue))
                     {
                         if (MouseValue?.OutputWeights[link.IndexedValue] < 0)
                         {
