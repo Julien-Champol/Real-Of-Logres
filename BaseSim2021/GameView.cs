@@ -32,6 +32,7 @@ namespace BaseSim2021
             InitializeComponent();
             theWorld = world;
             ListInitialization();
+            actuallyDrawing = false;
         }
 
         /// <summary>
@@ -76,6 +77,7 @@ namespace BaseSim2021
         /// <param name="e"></param>
         private void GameView_MouseDown(object sender, MouseEventArgs e)
         {
+            actuallyDrawing = false;
             if (e.Button == MouseButtons.Left) //If the cursor is placed on one of the IndexedValueView displayed.
             {
                 IndexedValue actualSelection = Sélection(e.Location)?.IndexedValue;
@@ -143,10 +145,10 @@ namespace BaseSim2021
             gloryLabel.Text = "Gloire : " + theWorld.Glory;
             nextButton.Visible = true;
             ViewsDisplay(e.Graphics);
+
             if (actuallyDrawing)
             {
                 e.Graphics.DrawLine(Pens.Green, startingPoint, linkedPoint);
-                actuallyDrawing = false;
             }
         }
         #endregion
@@ -333,6 +335,7 @@ namespace BaseSim2021
         {
             if (Sélection(e.Location)?.IndexedValue.Active == true || Sélection(e.Location)?.IndexedValue.AvailableAt <= theWorld.Turns)
             { MouseValue = Sélection(e.Location)?.IndexedValue; }
+
             if (MouseValue != null)
             {
                 linkedValues.Clear();
@@ -340,20 +343,17 @@ namespace BaseSim2021
                 {
                     foreach (IndexedValue q in MouseValue.OutputWeights.Keys)
                     {
-                        //Pas polViews
-                        linkedValues.Add(polViews.FirstOrDefault(pol => pol.IndexedValue.Equals(q)));
-                    }
-
-                    actuallyDrawing = true;
-                    foreach (IndexedValueView r in linkedValues)
-                    {
-                        startingPoint = (e.Location);
-                        linkedPoint = new Point(r.X, r.Y);
+                        linkedValues.Add(crisisViews.FirstOrDefault(ac => ac.IndexedValue.Equals(q)));
+                        linkedValues.Add(perksViews.FirstOrDefault(ac => ac.IndexedValue.Equals(q)));
+                        linkedValues.Add(indicatorsViews.FirstOrDefault(ac => ac.IndexedValue.Equals(q)));
+                        linkedValues.Add(groupsViews.FirstOrDefault(ac => ac.IndexedValue.Equals(q)));
                     }
                 }
             }
 
         }
+
+
 
         /// <summary>
         /// The method handling the MouseUp event of the main window. Useful to display the links between the IndexedValues.
@@ -361,18 +361,20 @@ namespace BaseSim2021
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void GameView_MouseUp(object sender, MouseEventArgs e)
-        {/*
+        {
             if (MouseValue != null)
             {
                 actuallyDrawing = true;
-                foreach (IndexedValueView q in linkedValues)
+                foreach (IndexedValueView r in linkedValues)
                 {
-                    startingPoint = (e.Location);
-                    linkedPoint = new Point(q.X, q.Y);
+                    if (r != null)
+                    {
+                        startingPoint = (e.Location);
+                        linkedPoint = new Point((r.X), (r.Y));
+                    }
                 }
             }
-            */
-            #endregion
         }
+        #endregion
     }
 }
