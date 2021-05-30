@@ -48,7 +48,7 @@ namespace BaseSim2021
         /// <param name="g"></param>
         public void histogramme_Draw(Graphics g)
         {
-            Rectangle histogramme = new Rectangle(335, 147, 290, 310);
+            Rectangle histogramme = new Rectangle(335, 147, 290, 340);
             Pen histogrammePen = new Pen(Color.Black, 3);
             g.DrawRectangle(histogrammePen, histogramme);
 
@@ -58,6 +58,43 @@ namespace BaseSim2021
                 Point drawPoint = new Point(345, y);
                 g.DrawString(link.Name, new Font("Times New Roman", 12, FontStyle.Regular), Brushes.Black, drawPoint);
                 y += 40;
+                TrackBar effect = new TrackBar();
+                if (TheIndexedValue.OutputWeights[link] < 0)
+                {
+                    effect.Location = new Point(436, y - 40);
+                    effect.Value = 0;
+                    effect.Maximum = 4;
+                    effect.Show();
+                    Controls.Add(effect);
+                }
+                else if (TheIndexedValue.OutputWeights[link] > 0
+                  && TheIndexedValue.OutputWeights[link].ToString().Contains("0,00"))
+                {
+                    effect.Location = new Point(436, y - 40);
+                    effect.Value = 2;
+                    effect.Maximum = 4;
+                    effect.Show();
+                    Controls.Add(effect);
+                }
+                else if (TheIndexedValue.OutputWeights[link] > 0
+                 && TheIndexedValue.OutputWeights[link].ToString().Contains("0,0"))
+                {
+                    effect.Location = new Point(436, y - 40);
+                    effect.Value = 3;
+                    effect.Maximum = 4;
+                    effect.Show();
+                    Controls.Add(effect);
+                }
+                else if (TheIndexedValue.OutputWeights[link] > 0
+               && TheIndexedValue.OutputWeights[link].ToString().Contains("0,00"))
+                {
+                    effect.Location = new Point(436, y - 40);
+                    effect.Value = 4;
+                    effect.Maximum = 4;
+                    effect.Show();
+                    Controls.Add(effect);
+                }
+
             }
         }
 
@@ -69,6 +106,24 @@ namespace BaseSim2021
         private void ValueExplorer_Paint(object sender, PaintEventArgs e)
         {
             histogramme_Draw(e.Graphics);
+        }
+
+        /// <summary>
+        /// Handling the value changing event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void valueNumUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            int val = (int)valueNumUpDown.Value;
+            int mCost = 0;
+            int gCost = 0;
+            lienValeur.Text = "Modifications en direct :";
+            desRealTimeCost.Text = "Coût monétaire en temps réel";
+            desRealTimeGlory.Text = "Coût (gloire) en temps réel";
+            TheIndexedValue?.PreviewPolicyChange(ref val, out mCost, out gCost);
+            coûtDirect.Text = mCost.ToString();
+            gloireDirect.Text = gCost.ToString();
         }
     }
 }

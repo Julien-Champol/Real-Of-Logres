@@ -1,5 +1,8 @@
-12/05/2021
+///A l'intention du correcteur///
+Le projet a été réalisé depuis le tutoriel jusqu'à l'exercie 16, sans compléments.
 
+
+12/05/2021
 Réalisation de l'exercice 10. Utilisation du code de DessinObjets.
 Tentative d'adaptation de la taille du string name à la taille du carré de l'affichage.
 Réussi.
@@ -24,3 +27,4 @@ Début des liens.
 Traitement de l'exerice 14.
 
 30/05
+Fin du projet.

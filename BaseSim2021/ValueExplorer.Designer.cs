@@ -39,6 +39,11 @@ namespace BaseSim2021
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.histogrammeTitle = new System.Windows.Forms.Label();
+            this.lienValeur = new System.Windows.Forms.Label();
+            this.coûtDirect = new System.Windows.Forms.Label();
+            this.gloireDirect = new System.Windows.Forms.Label();
+            this.desRealTimeCost = new System.Windows.Forms.Label();
+            this.desRealTimeGlory = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.valueNumUpDown)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,6 +90,7 @@ namespace BaseSim2021
             this.valueNumUpDown.Name = "valueNumUpDown";
             this.valueNumUpDown.Size = new System.Drawing.Size(120, 20);
             this.valueNumUpDown.TabIndex = 4;
+            this.valueNumUpDown.ValueChanged += new System.EventHandler(this.valueNumUpDown_ValueChanged);
             // 
             // secondCost
             // 
@@ -121,7 +127,7 @@ namespace BaseSim2021
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.okButton.Location = new System.Drawing.Point(682, 306);
+            this.okButton.Location = new System.Drawing.Point(846, 295);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 8;
@@ -132,7 +138,7 @@ namespace BaseSim2021
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelButton.Location = new System.Drawing.Point(682, 365);
+            this.cancelButton.Location = new System.Drawing.Point(846, 355);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 9;
@@ -149,11 +155,66 @@ namespace BaseSim2021
             this.histogrammeTitle.TabIndex = 10;
             this.histogrammeTitle.Text = "label1";
             // 
+            // lienValeur
+            // 
+            this.lienValeur.AutoSize = true;
+            this.lienValeur.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lienValeur.Location = new System.Drawing.Point(687, 107);
+            this.lienValeur.Name = "lienValeur";
+            this.lienValeur.Size = new System.Drawing.Size(41, 15);
+            this.lienValeur.TabIndex = 11;
+            this.lienValeur.Text = "label1";
+            // 
+            // coûtDirect
+            // 
+            this.coûtDirect.AutoSize = true;
+            this.coûtDirect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.coûtDirect.Location = new System.Drawing.Point(687, 201);
+            this.coûtDirect.Name = "coûtDirect";
+            this.coûtDirect.Size = new System.Drawing.Size(41, 15);
+            this.coûtDirect.TabIndex = 12;
+            this.coûtDirect.Text = "label1";
+            // 
+            // gloireDirect
+            // 
+            this.gloireDirect.AutoSize = true;
+            this.gloireDirect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gloireDirect.Location = new System.Drawing.Point(687, 303);
+            this.gloireDirect.Name = "gloireDirect";
+            this.gloireDirect.Size = new System.Drawing.Size(41, 15);
+            this.gloireDirect.TabIndex = 13;
+            this.gloireDirect.Text = "label1";
+            // 
+            // desRealTimeCost
+            // 
+            this.desRealTimeCost.AutoSize = true;
+            this.desRealTimeCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.desRealTimeCost.Location = new System.Drawing.Point(687, 164);
+            this.desRealTimeCost.Name = "desRealTimeCost";
+            this.desRealTimeCost.Size = new System.Drawing.Size(41, 15);
+            this.desRealTimeCost.TabIndex = 14;
+            this.desRealTimeCost.Text = "label1";
+            // 
+            // desRealTimeGlory
+            // 
+            this.desRealTimeGlory.AutoSize = true;
+            this.desRealTimeGlory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.desRealTimeGlory.Location = new System.Drawing.Point(687, 265);
+            this.desRealTimeGlory.Name = "desRealTimeGlory";
+            this.desRealTimeGlory.Size = new System.Drawing.Size(41, 15);
+            this.desRealTimeGlory.TabIndex = 15;
+            this.desRealTimeGlory.Text = "label1";
+            // 
             // ValueExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 521);
+            this.ClientSize = new System.Drawing.Size(981, 521);
+            this.Controls.Add(this.desRealTimeGlory);
+            this.Controls.Add(this.desRealTimeCost);
+            this.Controls.Add(this.gloireDirect);
+            this.Controls.Add(this.coûtDirect);
+            this.Controls.Add(this.lienValeur);
             this.Controls.Add(this.histogrammeTitle);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
@@ -186,5 +247,10 @@ namespace BaseSim2021
         private System.Windows.Forms.Button cancelButton;
         public System.Windows.Forms.NumericUpDown valueNumUpDown;
         private System.Windows.Forms.Label histogrammeTitle;
+        private System.Windows.Forms.Label lienValeur;
+        private System.Windows.Forms.Label coûtDirect;
+        private System.Windows.Forms.Label gloireDirect;
+        private System.Windows.Forms.Label desRealTimeCost;
+        private System.Windows.Forms.Label desRealTimeGlory;
     }
 }
