@@ -13,18 +13,22 @@ Réponse à l'événement mouseDown, Utilisation du code de DessinObjets.
 Problème : utilisation simultanée des listes de IndexedValueViews dans la méthode sélection.
 Une méthode paar liste -> pas opti.
 
-21/05
+21/05/2021
 Numeric updown, non fonctionnel méthode influence étrange.
 
-24/05
+24/05/2021
 Fin de la maquette, numeric updown fonctionnel.
 
-25/05
+25/05/2021
 MessageBox fonctionnel. Sécurisation des cliques.
 Début des liens.
 
-28/05 
+28/05/2021 
 Traitement de l'exerice 14.
 
-30/05
+30/05/2021
 Fin du projet.
+
+10/08/2021
+Reprise du projet en autonomie, relecture des compléments.
+Test Mirror repositories.
